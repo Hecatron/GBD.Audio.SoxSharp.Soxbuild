@@ -157,6 +157,7 @@ $RECYCLE.BIN/
 
 # Exclude build directory
 /build/
+!/build/.keepme
 
 # Include bin directory and ignored deps directory
 !/bin/

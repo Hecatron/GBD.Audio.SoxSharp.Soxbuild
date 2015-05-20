@@ -1,7 +1,6 @@
 using NLog;
 using System;
 using System.IO;
-using System.Reflection;
 using ICSharpCode.SharpZipLib.BZip2;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
@@ -104,7 +103,7 @@ public class Archive
     {
         string exepath = SevenZipDllPath;
         if (string.IsNullOrEmpty(exepath)) {
-            exepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            exepath = GlobalScript.ScriptRunLocation();
             if (string.IsNullOrEmpty(exepath)) throw new Exception("ExePath indeterminable");
         }
 

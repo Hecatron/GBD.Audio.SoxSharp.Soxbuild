@@ -83,7 +83,7 @@ class DependLibSox
             };
 
         // Handle wavpac since it has different sources for windows / unix
-        if (Depend.IsOsUnix()) {
+        if (GlobalScript.IsOsUnix()) {
             ret.Add(new Depend("wavpack", "4.70.0","{Name}-{Version}.tar.bz2", "{Name}",
                 "http://www.wavpack.com/{Name}-{Version}.tar.bz2"));
         }
@@ -101,7 +101,8 @@ class DependLibSox
 
     /// <summary> Main entry-point for this application. </summary>
     /// <param name="args"> Array of command-line argument strings. </param>
-    public static void Main(string[] args) {
+    public static void Main(string[] args)
+    {
         Logger.Info("Starting Download / Extraction of Sources");
         var deps = GetDepends();
         DownloadExtractDepends(deps);

@@ -117,15 +117,6 @@ public class Depend
 
     #endregion
 
-    #region "Functions - Static"
 
-    /// <summary> Check if the Operating System is Unix. </summary>
-    public static bool IsOsUnix() {
-        int p = (int)Environment.OSVersion.Platform;
-        if ((p == 4) || (p == 6) || (p == 128)) return true;
-        return false;
-    }
-
-    #endregion
 
 }
