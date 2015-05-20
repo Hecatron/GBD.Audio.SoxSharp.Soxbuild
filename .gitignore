@@ -158,5 +158,6 @@ $RECYCLE.BIN/
 # Exclude build directory
 /build/
 
-# Include bin directory
+# Include bin directory and ignored deps directory
 !/bin/
+!/deps/SevenZipSharp.Interop.9.38/build/
