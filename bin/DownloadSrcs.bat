@@ -1,3 +1,3 @@
 @echo off
 
-binfiles\scriptcs\scriptcs.exe -ScriptName scripts\Main_Depend.csx
+binfiles\scriptcs\scriptcs.exe -ScriptName scripts\DownloadSrcs_Main.csx

@@ -7,8 +7,8 @@
     <ProjectGuid>{E3B99DA7-9B92-4321-9C10-617D49C782E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DownloadSrcs</RootNamespace>
-    <AssemblyName>DownloadSrcs</AssemblyName>
+    <RootNamespace>DownloadSrcs_Testing</RootNamespace>
+    <AssemblyName>DownloadSrcs_Testing</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,7 +36,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>DownloadSrcs.Program</StartupObject>
+    <StartupObject>DownloadSrcs_Testing.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
@@ -60,17 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Archive.cs">
-      <Link>Srcs\Archive.cs</Link>
+    <Compile Include="..\..\DownloadSrcs.cs">
+      <Link>Srcs\DownloadSrcs.cs</Link>
     </Compile>
-    <Compile Include="..\..\Depend.cs">
-      <Link>Srcs\Depend.cs</Link>
+    <Compile Include="..\..\Lib\Archive.cs">
+      <Link>Lib\Archive.cs</Link>
     </Compile>
-    <Compile Include="..\..\DependLibSox.cs">
-      <Link>Srcs\DependLibSox.cs</Link>
+    <Compile Include="..\..\Lib\GlobalScript.cs">
+      <Link>Lib\GlobalScript.cs</Link>
     </Compile>
-    <Compile Include="..\..\GlobalScript.cs">
-      <Link>Srcs\GlobalScript.cs</Link>
+    <Compile Include="..\..\Lib\SourcePackage.cs">
+      <Link>Lib\SourcePackage.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

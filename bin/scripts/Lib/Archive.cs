@@ -8,7 +8,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.LZW;
 using SevenZip;
 
-/// <summary> General Dependency Handling code, represents a single dependency. </summary>
+/// <summary> Code for Handling Archives / Compression / Decompression. </summary>
 public class Archive
 {
     #region "Properties - Static"
@@ -66,7 +66,7 @@ public class Archive
     /// <summary> Extracts a LZW file into a Directory using SharpZipLib. </summary>
     /// <param name="filepath">    Path to the input file to extract. </param>
     /// <param name="destFolder">  Destination directory to extract to. </param>
-    public static void ExtractTarLZW(String filepath, String destFolder) {
+    public static void ExtractTarLzw(String filepath, String destFolder) {
         Stream inStream = File.OpenRead(filepath);
         Stream cmpstream = new LzwInputStream(inStream);
         TarArchive tarArchive = TarArchive.CreateInputTarArchive(cmpstream);
@@ -89,6 +89,7 @@ public class Archive
 
         // Extract the tar file
         string tarfile = Path.GetFileNameWithoutExtension(filepath);
+        if (string.IsNullOrEmpty(tarfile)) throw new Exception("Tar filename indeterminate");
         string tarpath = Path.Combine(destFolder, tarfile);
         Stream inStream = File.OpenRead(tarpath);
         TarArchive tarArchive = TarArchive.CreateInputTarArchive(inStream);
@@ -99,16 +100,12 @@ public class Archive
     }
 
     /// <summary> Set the path to the 7Zip dll. </summary>
-    private static void Refresh_SevenZipDllPath()
-    {
-        string exepath = SevenZipDllPath;
-        if (string.IsNullOrEmpty(exepath)) {
-            exepath = GlobalScript.ScriptRunLocation();
-            if (string.IsNullOrEmpty(exepath)) throw new Exception("ExePath indeterminable");
-        }
+    private static void Refresh_SevenZipDllPath() {
+        // If we're inside the debugger, this should already be handled
+        if (string.IsNullOrEmpty(SevenZipDllPath)) return;
 
         // Toggle between the x86 and x64 bit dll
-        string dllpath = Path.Combine(exepath, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+        string dllpath = Path.Combine(SevenZipDllPath, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
         SevenZipBase.SetLibraryPath(dllpath);
     }
 

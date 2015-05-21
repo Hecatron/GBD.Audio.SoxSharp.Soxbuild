@@ -1,7 +1,7 @@
-#load "GlobalScript.cs"
-#load "Archive.cs"
-#load "Depend.cs"
-#load "DependLibSox.cs"
+#load "Lib\GlobalScript.cs"
+#load "Lib\Archive.cs"
+#load "Lib\SourcePackage.cs"
+#load "DownloadSrcs.cs"
 
 #r "..\..\deps\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll"
 #r "..\..\deps\NLog.3.2.1\lib\net45\NLog.dll"
@@ -17,4 +17,4 @@ NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(logFileP
 Archive.SevenZipDllPath = Path.Combine(GlobalScript.ScriptRunLocation(), @"..\..\deps\SevenZipSharp.Interop.9.38\build\net451\");
 
 // Make Call to Main App
-DependLibSox.Main(Env.ScriptArgs.ToArray());
+DownloadSrcs.Main(Env.ScriptArgs.ToArray());

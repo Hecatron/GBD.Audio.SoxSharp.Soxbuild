@@ -3,8 +3,8 @@ using System;
 using System.IO;
 using System.Net;
 
-/// <summary> General Dependency Handling code, represents a single dependency. </summary>
-public class Depend
+/// <summary> Code for Handling Source Code Packages</summary>
+public class SourcePackage
 {
     #region "Properties - Static"
 
@@ -41,7 +41,7 @@ public class Depend
     #region "Constructors"
 
     /// <summary> Default constructor. </summary>
-    public Depend() { 
+    public SourcePackage() { 
     }
 
     /// <summary> Depend Constructor. </summary>
@@ -50,7 +50,8 @@ public class Depend
     /// <param name="filename">     Filename of the downloaded file to be used for extraction. </param>
     /// <param name="extractsubdir"> The extraction sub directory. </param>
     /// <param name="downloadurl">  The downloadurl path to download the depend. </param>
-    public Depend(string name, string version, string filename, string extractsubdir, string downloadurl) {
+    public SourcePackage(string name, string version, string filename, string extractsubdir, string downloadurl)
+    {
         Name = name;
         Version = version;
         FileName = filename;
