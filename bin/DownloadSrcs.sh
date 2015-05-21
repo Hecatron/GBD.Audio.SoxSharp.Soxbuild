@@ -1,4 +1,3 @@
 #!/bin/bash
 
-echo Downloading Sources
-mono binfiles\scriptcs\scriptcs.exe -ScriptName scripts\Main_Depend.csx
+mono binfiles\scriptcs\scriptcs.exe -ScriptName scripts\DownloadSrcs_Main.csx

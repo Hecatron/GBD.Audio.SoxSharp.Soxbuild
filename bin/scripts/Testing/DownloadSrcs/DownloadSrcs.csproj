@@ -72,6 +72,9 @@
     <Compile Include="..\..\Lib\SourcePackage.cs">
       <Link>Lib\SourcePackage.cs</Link>
     </Compile>
+    <Compile Include="..\..\Lib\XmlSerial.cs">
+      <Link>Lib\XmlSerial.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
