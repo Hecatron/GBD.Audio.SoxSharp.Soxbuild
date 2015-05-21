@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{56049AB2-3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadSrcs", "DownloadSrcs\DownloadSrcs.csproj", "{E3B99DA7-9B92-4321-9C10-617D49C782E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMakeGenerate", "CMakeGenerate\CMakeGenerate.csproj", "{C523095C-7737-4515-84D8-27E5A67046C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +19,16 @@ Global
 		{E3B99DA7-9B92-4321-9C10-617D49C782E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B99DA7-9B92-4321-9C10-617D49C782E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B99DA7-9B92-4321-9C10-617D49C782E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C523095C-7737-4515-84D8-27E5A67046C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C523095C-7737-4515-84D8-27E5A67046C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C523095C-7737-4515-84D8-27E5A67046C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C523095C-7737-4515-84D8-27E5A67046C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E3B99DA7-9B92-4321-9C10-617D49C782E5} = {56049AB2-34F0-4913-B853-15A6BA067E4A}
+		{C523095C-7737-4515-84D8-27E5A67046C5} = {56049AB2-34F0-4913-B853-15A6BA067E4A}
 	EndGlobalSection
 EndGlobal

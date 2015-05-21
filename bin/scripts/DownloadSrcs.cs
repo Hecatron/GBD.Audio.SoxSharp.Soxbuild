@@ -2,21 +2,11 @@ using System.Collections.Generic;
 using System.IO;
 using NLog;
 
-/// <summary> HttpDownload LibSox Sources Code. </summary>
+/// <summary> Http Download LibSox Source Code. </summary>
 class DownloadSrcs
 {
-    #region "Properties"
-
     /// <summary> Used for the Logging Output. </summary>
     private static Logger Logger = LogManager.GetCurrentClassLogger();
-
-    /// <summary> Root Directory to store downloaded Archive Files. </summary>
-    public static string RootArchiveDir = @"..\build\archive";
-
-    /// <summary> Root Directory to extract all libsox files into, the main build path. </summary>
-    public static string RootExtractDir = @"..\build\libsoxbuild";
-
-    #endregion
 
     #region "Functions"
 
@@ -32,10 +22,13 @@ class DownloadSrcs
     /// <summary> HttpDownload and Extract all Dependencies. </summary>
     public static void DownloadExtractDepends(List<SourcePackage> deps)
     {
-        if (Directory.Exists(RootArchiveDir) == false) Directory.CreateDirectory(RootArchiveDir);
-        if (Directory.Exists(RootExtractDir) == false) Directory.CreateDirectory(RootExtractDir);
-        SourcePackage.RootArchiveDir = RootArchiveDir;
-        SourcePackage.RootExtractDir = RootExtractDir;
+        string archiveDirAbs = GlobalScript.AbsPath(Paths.ArchiveDir);
+        string extractDirAbs = GlobalScript.AbsPath(Paths.ExtractDir);
+
+        if (Directory.Exists(archiveDirAbs) == false) Directory.CreateDirectory(archiveDirAbs);
+        if (Directory.Exists(extractDirAbs) == false) Directory.CreateDirectory(extractDirAbs);
+        SourcePackage.ArchiveDir = archiveDirAbs;
+        SourcePackage.ExtractDir = extractDirAbs;
 
         foreach (SourcePackage item in deps)
         {
@@ -50,7 +43,7 @@ class DownloadSrcs
 
                 case "wavpack":
                     //TODO see if this is different under Linux
-                    string wavpackdir = Path.Combine(RootExtractDir, item.ExtractSubDir_Formatted());
+                    string wavpackdir = Path.Combine(extractDirAbs, item.ExtractSubDir_Formatted());
                     Directory.CreateDirectory(wavpackdir);
                     Archive.Extract(item.FilePath_Formatted(), wavpackdir);
                     break;
@@ -58,10 +51,7 @@ class DownloadSrcs
                 default:
                     item.Extract();
                     break;
-
-
             }
-
         }
     }
 

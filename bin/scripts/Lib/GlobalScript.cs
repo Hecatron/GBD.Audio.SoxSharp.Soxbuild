@@ -21,6 +21,12 @@ public class GlobalScript
         return location;
     }
 
+    /// <summary> Calculate Absolute Path in relation to the script. </summary>
+    public static string AbsPath(string input) {
+        string ret = Path.Combine(ScriptRunLocation(), input);
+        return ret;
+    }
+
     #endregion
 
 }

@@ -13,10 +13,10 @@ public class SourcePackage
     private static Logger Logger = LogManager.GetCurrentClassLogger();
 
     /// <summary> Root Directory for downloading archive files to. </summary>
-    public static string RootArchiveDir { get; set; }
+    public static string ArchiveDir { get; set; }
 
     /// <summary> Root Directory for extracting sources to. </summary>
-    public static string RootExtractDir { get; set; }
+    public static string ExtractDir { get; set; }
 
     #endregion
 
@@ -76,7 +76,7 @@ public class SourcePackage
 
     /// <summary> Full path to the archive file. </summary>
     public string FilePath_Formatted() {
-        return Path.Combine(RootArchiveDir, FileName_Formatted());
+        return Path.Combine(ArchiveDir, FileName_Formatted());
     }
 
     /// <summary> ExtractSubDir with Name / Version replaced. </summary>
@@ -103,15 +103,15 @@ public class SourcePackage
 
     /// <summary> Extracts the depend. </summary>
     public void Extract() {
-        Archive.Extract(FilePath_Formatted(), RootExtractDir);
-        string src = Path.Combine(RootExtractDir, Name + "-" + Version);
-        string dest = Path.Combine(RootExtractDir, ExtractSubDir_Formatted());
+        Archive.Extract(FilePath_Formatted(), ExtractDir);
+        string src = Path.Combine(ExtractDir, Name + "-" + Version);
+        string dest = Path.Combine(ExtractDir, ExtractSubDir_Formatted());
         Directory.Move(src, dest);
     }
 
     /// <summary> Checks if the Depend has already been extracted. </summary>
     public bool ExtractDirExists() {
-        string extractdir = RootExtractDir;
+        string extractdir = ExtractDir;
         if (!String.IsNullOrEmpty(ExtractSubDir)) extractdir = Path.Combine(extractdir, ExtractSubDir_Formatted());
         if (Directory.Exists(extractdir)) return true;
         return false;
