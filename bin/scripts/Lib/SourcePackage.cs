@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 
 /// <summary> Code for Handling Source Code Packages</summary>
+[Serializable]
 public class SourcePackage
 {
     #region "Properties - Static"

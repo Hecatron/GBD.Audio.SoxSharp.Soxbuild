@@ -52,7 +52,7 @@ public class XmlSerial<T>
     /// <summary> Convert an XML file into a list of Class's (of customtype) </summary>
     public static List<T> Deserialize_List(string inputList) {
         var sr = new StringReader(inputList);
-        var oXs = new XmlSerializer(typeof(List<T>));
+        var oXs = new XmlSerializer(typeof(T));
         var retvalue = (List<T>)oXs.Deserialize(sr);
         sr.Close();
         return retvalue;

@@ -1,6 +1,7 @@
 using NLog;
 using System;
 using System.IO;
+using System.Reflection;
 using ICSharpCode.SharpZipLib.BZip2;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
@@ -101,8 +102,11 @@ public class Archive
 
     /// <summary> Set the path to the 7Zip dll. </summary>
     private static void Refresh_SevenZipDllPath() {
-        // If we're inside the debugger, this should already be handled
-        if (string.IsNullOrEmpty(SevenZipDllPath)) return;
+        // If we're inside the debugger, use local assembly directory
+        if (string.IsNullOrEmpty(SevenZipDllPath))
+        {
+            SevenZipDllPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
 
         // Toggle between the x86 and x64 bit dll
         string dllpath = Path.Combine(SevenZipDllPath, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");

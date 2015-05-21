@@ -18,10 +18,80 @@ class DownloadSrcs
 
     #endregion
 
-    #region "Depends"
+    #region "Functions"
+
+    /// <summary> Main entry-point for this application. </summary>
+    /// <param name="args"> Array of command-line argument strings. </param>
+    public static void Main(string[] args)
+    {
+        Logger.Info("Starting Download / Extraction of Sources");
+        var deps = GetDepends();
+        DownloadExtractDepends(deps);
+    }
+
+    /// <summary> HttpDownload and Extract all Dependencies. </summary>
+    public static void DownloadExtractDepends(List<SourcePackage> deps)
+    {
+        if (Directory.Exists(RootArchiveDir) == false) Directory.CreateDirectory(RootArchiveDir);
+        if (Directory.Exists(RootExtractDir) == false) Directory.CreateDirectory(RootExtractDir);
+        SourcePackage.RootArchiveDir = RootArchiveDir;
+        SourcePackage.RootExtractDir = RootExtractDir;
+
+        foreach (SourcePackage item in deps)
+        {
+            Logger.Info("Parsing: " + item.Name);
+            if (item.ExtractDirExists()) {
+                Logger.Warn("Skipping Directory already exists: " + item.Name);
+                continue;
+            }
+            item.HttpDownload();
+            
+            switch (item.Name) {
+
+                case "wavpack":
+                    //TODO see if this is different under Linux
+                    string wavpackdir = Path.Combine(RootExtractDir, item.ExtractSubDir_Formatted());
+                    Directory.CreateDirectory(wavpackdir);
+                    Archive.Extract(item.FilePath_Formatted(), wavpackdir);
+                    break;
+
+                default:
+                    item.Extract();
+                    break;
+
+
+            }
+
+        }
+    }
+
+    //TODO Switch around once we get a reply from scriptcs
+
+    ///// <summary> List of Depend Names / Paths. </summary>
+    //public static List<SourcePackage> GetDepends() {
+    //    string srcspath = Path.Combine(GlobalScript.ScriptRunLocation(), "Sources.xml");
+    //    string srcstxt = File.ReadAllText(srcspath);
+    //    List<SourcePackage> ret = XmlSerial<SourcePackage>.Deserialize_List(srcstxt);
+
+    //    // Handle wavpac since it has different sources for windows / unix
+    //    var wplin = (from item in ret where item.Name == "wavpack-linux" select item).FirstOrDefault();
+    //    var wpwin = (from item in ret where item.Name == "wavpack-win" select item).FirstOrDefault();
+    //    if (GlobalScript.IsOsUnix())
+    //    {
+    //        if (wpwin != null) ret.Remove(wpwin);
+    //        if (wplin != null) wplin.Name = "wavpack";
+    //    }
+    //    else
+    //    {
+    //        if (wplin != null) ret.Remove(wplin);
+    //        if (wpwin != null) wpwin.Name = "wavpack";
+    //    }
+    //    return ret;
+    //}
 
     /// <summary> List of Depend Names / Paths. </summary>
-    public static List<SourcePackage> GetDepends() {
+    public static List<SourcePackage> GetDepends()
+    {
         var ret = new List<SourcePackage>
             {
                 new SourcePackage("sox", "14.4.2","{Name}-{Version}.tar.gz","{Name}",
@@ -83,65 +153,18 @@ class DownloadSrcs
             };
 
         // Handle wavpac since it has different sources for windows / unix
-        if (GlobalScript.IsOsUnix()) {
+        if (GlobalScript.IsOsUnix())
+        {
             ret.Add(new SourcePackage("wavpack", "4.70.0", "{Name}-{Version}.tar.bz2", "{Name}",
                 "http://www.wavpack.com/{Name}-{Version}.tar.bz2"));
         }
-        else {
+        else
+        {
             ret.Add(new SourcePackage("wavpack", "4.70.0", "sources.zip", "{Name}",
                 "http://www.wavpack.com/sources.zip"));
         }
 
         return ret;
-    }
-
-    #endregion
-
-    #region "Functions"
-
-    /// <summary> Main entry-point for this application. </summary>
-    /// <param name="args"> Array of command-line argument strings. </param>
-    public static void Main(string[] args)
-    {
-        Logger.Info("Starting Download / Extraction of Sources");
-        var deps = GetDepends();
-        DownloadExtractDepends(deps);
-    }
-
-    /// <summary> HttpDownload and Extract all Dependencies. </summary>
-    public static void DownloadExtractDepends(List<SourcePackage> deps)
-    {
-        if (Directory.Exists(RootArchiveDir) == false) Directory.CreateDirectory(RootArchiveDir);
-        if (Directory.Exists(RootExtractDir) == false) Directory.CreateDirectory(RootExtractDir);
-        SourcePackage.RootArchiveDir = RootArchiveDir;
-        SourcePackage.RootExtractDir = RootExtractDir;
-
-        foreach (SourcePackage item in deps)
-        {
-            Logger.Info("Parsing: " + item.Name);
-            if (item.ExtractDirExists()) {
-                Logger.Warn("Skipping Directory already exists: " + item.Name);
-                continue;
-            }
-            item.HttpDownload();
-            
-            switch (item.Name) {
-
-                case "wavpack":
-                    //TODO see if this is different under Linux
-                    string wavpackdir = Path.Combine(RootExtractDir, item.ExtractSubDir_Formatted());
-                    Directory.CreateDirectory(wavpackdir);
-                    Archive.Extract(item.FilePath_Formatted(), wavpackdir);
-                    break;
-
-                default:
-                    item.Extract();
-                    break;
-
-
-            }
-
-        }
     }
 
     #endregion

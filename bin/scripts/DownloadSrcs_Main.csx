@@ -1,5 +1,6 @@
 #load "Lib\GlobalScript.cs"
 #load "Lib\Archive.cs"
+#load "Lib\XmlSerial.cs"
 #load "Lib\SourcePackage.cs"
 #load "DownloadSrcs.cs"
 

@@ -85,6 +85,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Sources.xml">
+      <Link>Sources.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\..\deps\SevenZipSharp.Interop.9.38\build\net451\SevenZipSharp.Interop.targets" Condition="Exists('..\..\..\..\deps\SevenZipSharp.Interop.9.38\build\net451\SevenZipSharp.Interop.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
