@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadSrcs", "DownloadSrc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMakeGenerate", "CMakeGenerate\CMakeGenerate.csproj", "{C523095C-7737-4515-84D8-27E5A67046C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwigGenerate", "SwigGenerate\SwigGenerate.csproj", "{EC4B8E4E-C43C-4952-A25E-441A66FC45F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{C523095C-7737-4515-84D8-27E5A67046C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C523095C-7737-4515-84D8-27E5A67046C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C523095C-7737-4515-84D8-27E5A67046C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4B8E4E-C43C-4952-A25E-441A66FC45F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4B8E4E-C43C-4952-A25E-441A66FC45F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4B8E4E-C43C-4952-A25E-441A66FC45F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4B8E4E-C43C-4952-A25E-441A66FC45F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E3B99DA7-9B92-4321-9C10-617D49C782E5} = {56049AB2-34F0-4913-B853-15A6BA067E4A}
 		{C523095C-7737-4515-84D8-27E5A67046C5} = {56049AB2-34F0-4913-B853-15A6BA067E4A}
+		{EC4B8E4E-C43C-4952-A25E-441A66FC45F0} = {56049AB2-34F0-4913-B853-15A6BA067E4A}
 	EndGlobalSection
 EndGlobal

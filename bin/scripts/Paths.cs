@@ -13,7 +13,7 @@ public class Paths
     public static string ExtractDir = @"..\..\build\libsoxbuild";
 
     /// <summary> Root Directory to extract all libsox files into, the main build path. </summary>
-    public static string CMakeDir = @"..\..\build\libsoxbuild";
+    public static string CMakeDir = @"..\..\build\libsoxbuild\cmake";
 
 }
 

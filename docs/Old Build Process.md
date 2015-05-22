@@ -33,3 +33,7 @@ Again there's a script setup for this under bin/
   DownloadSrcs.sh
 
 This will download any source archives into build/archive/ and extract the sources into build/libsoxbuild
+
+### Preping the Visual Studio Project Files
+
+There are a set of pre-generated Visual Studio Project files we can use to build libsox and a number of other libraries
