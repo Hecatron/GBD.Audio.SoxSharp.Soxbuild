@@ -1,7 +1,9 @@
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Xml.Linq;
 
 /// <summary> Code for Handling Source Code Packages</summary>
 [Serializable]
@@ -117,8 +119,28 @@ public class SourcePackage
         return false;
     }
 
-    #endregion
+    /// <summary> Deserialize XML File into List of class's. </summary>
+    public static List<SourcePackage> Deserialize_List(XElement xelement)
+    {
+        List<SourcePackage> ret = new List<SourcePackage>();
+        foreach (XElement item in xelement.Elements("SourcePackage")) {
+            SourcePackage newitem = new SourcePackage();
+            var xName = item.Element("Name");
+            var xVersion = item.Element("Version");
+            var xFileName = item.Element("FileName");
+            var xExtractSubDir = item.Element("ExtractSubDir");
+            var xDownloadUrl = item.Element("DownloadUrl");
+            if (xName != null) newitem.Name = xName.Value;
+            if (xVersion != null) newitem.Version = xVersion.Value;
+            if (xFileName != null) newitem.FileName = xFileName.Value;
+            if (xExtractSubDir != null) newitem.ExtractSubDir = xExtractSubDir.Value;
+            if (xDownloadUrl != null) newitem.DownloadUrl = xDownloadUrl.Value;
+            ret.Add(newitem);
+        }
+        return ret;
+    }
 
+    #endregion
 
 
 }

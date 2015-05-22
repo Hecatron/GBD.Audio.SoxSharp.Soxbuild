@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using NLog;
 
 /// <summary> Http Download LibSox Source Code. </summary>
@@ -55,105 +57,28 @@ class DownloadSrcs
         }
     }
 
-    //TODO Switch around once we get a reply from scriptcs
-
-    ///// <summary> List of Depend Names / Paths. </summary>
-    //public static List<SourcePackage> GetDepends() {
-    //    string srcspath = Path.Combine(GlobalScript.ScriptRunLocation(), "Sources.xml");
-    //    string srcstxt = File.ReadAllText(srcspath);
-    //    List<SourcePackage> ret = XmlSerial<SourcePackage>.Deserialize_List(srcstxt);
-
-    //    // Handle wavpac since it has different sources for windows / unix
-    //    var wplin = (from item in ret where item.Name == "wavpack-linux" select item).FirstOrDefault();
-    //    var wpwin = (from item in ret where item.Name == "wavpack-win" select item).FirstOrDefault();
-    //    if (GlobalScript.IsOsUnix())
-    //    {
-    //        if (wpwin != null) ret.Remove(wpwin);
-    //        if (wplin != null) wplin.Name = "wavpack";
-    //    }
-    //    else
-    //    {
-    //        if (wplin != null) ret.Remove(wplin);
-    //        if (wpwin != null) wpwin.Name = "wavpack";
-    //    }
-    //    return ret;
-    //}
-
     /// <summary> List of Depend Names / Paths. </summary>
     public static List<SourcePackage> GetDepends()
     {
-        var ret = new List<SourcePackage>
-            {
-                new SourcePackage("sox", "14.4.2","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/sox/sox/{Version}/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("flac", "1.3.1","{Name}-{Version}.tar.xz","{Name}",
-                    "http://downloads.xiph.org/releases/{Name}/{Name}-{Version}.tar.xz"),
-
-                new SourcePackage("libid3tag", "0.15.1b","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/mad/{Name}/{Version}/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("libmad", "0.15.1b","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/mad/{Name}/{Version}/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("lame", "3.99.5","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/lame/{Name}/3.99/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("libogg", "1.3.2","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.xiph.org/releases/ogg/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("libpng","1.6.17","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/libpng/libpng16/{Version}/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("libsndfile","1.0.25","{Name}-{Version}.tar.gz","{Name}",
-                    "http://www.mega-nerd.com/libsndfile/files/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("speex","1.2rc2","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.xiph.org/releases/speex/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("libvorbis","1.3.5","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.xiph.org/releases/vorbis/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("zlib","1.2.8","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/libpng/zlib/{Version}/{Name}-{Version}.tar.gz"),
-
-
-                // TODO Not sure of these
-                // not included in the pre-built project files, try regenerating using CMake / Look for links to these from above libs
-
-                //TODO should we delete headers in root dir for this one?
-                new SourcePackage("opencore-amr","0.1.3","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/opencore-amr/opencore-amr/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("amrnb","11.0.0.0","{Name}-{Version}.tar.bz2","{Name}",
-                    "http://www.penguin.cz/~utx/ftp/amr/{Name}-{Version}.tar.bz2"),
-
-                new SourcePackage("amrwb","11.0.0.0","{Name}-{Version}.tar.bz2","{Name}",
-                    "http://www.penguin.cz/~utx/ftp/amr/{Name}-{Version}.tar.bz2"),
-
-                new SourcePackage("libao","1.2.0","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.xiph.org/releases/ao/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("twolame","0.3.13","{Name}-{Version}.tar.gz","{Name}",
-                    "http://downloads.sourceforge.net/project/twolame/{Name}/{Version}/{Name}-{Version}.tar.gz"),
-
-                new SourcePackage("opus","1.1","{Name}-{Version}.tar.gz","{Name}",
-                    "https://ftp.mozilla.org/pub/mozilla.org/{Name}/{Name}-{Version}.tar.gz"),
-
-            };
+        string srcspath = Path.Combine(GlobalScript.ScriptRunLocation(), "Sources.xml");
+        XElement xelement = XElement.Load(srcspath);
+        List<SourcePackage> ret = SourcePackage.Deserialize_List(xelement);
+        //string srcstxt = File.ReadAllText(srcspath);
+        //List<SourcePackage> ret = XmlSerial<SourcePackage>.Deserialize_List(srcstxt);
 
         // Handle wavpac since it has different sources for windows / unix
+        var wplin = (from item in ret where item.Name == "wavpack-linux" select item).FirstOrDefault();
+        var wpwin = (from item in ret where item.Name == "wavpack-win" select item).FirstOrDefault();
         if (GlobalScript.IsOsUnix())
         {
-            ret.Add(new SourcePackage("wavpack", "4.70.0", "{Name}-{Version}.tar.bz2", "{Name}",
-                "http://www.wavpack.com/{Name}-{Version}.tar.bz2"));
+            if (wpwin != null) ret.Remove(wpwin);
+            if (wplin != null) wplin.Name = "wavpack";
         }
         else
         {
-            ret.Add(new SourcePackage("wavpack", "4.70.0", "sources.zip", "{Name}",
-                "http://www.wavpack.com/sources.zip"));
+            if (wplin != null) ret.Remove(wplin);
+            if (wpwin != null) wpwin.Name = "wavpack";
         }
-
         return ret;
     }
 

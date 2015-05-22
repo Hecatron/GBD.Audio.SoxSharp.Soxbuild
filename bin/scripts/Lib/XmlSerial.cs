@@ -3,6 +3,9 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
+// Note this code currently fails with Roslyn / scriptcs due to all class's being wrapped / nested
+// Which creates problems from XmlSerializer's point of view, for now use Linq Xml to handle Serialization
+
 /// <summary> Helper Code to Convert Class's into a block of XML / Back into a Class. </summary>
 public class XmlSerial<T>
 {
@@ -53,6 +56,7 @@ public class XmlSerial<T>
     public static List<T> Deserialize_List(string inputList) {
         var sr = new StringReader(inputList);
         var oXs = new XmlSerializer(typeof(T));
+        //var oXs = XmlSerializer.FromTypes(new[] { typeof(List<T>) })[0];
         var retvalue = (List<T>)oXs.Deserialize(sr);
         sr.Close();
         return retvalue;
