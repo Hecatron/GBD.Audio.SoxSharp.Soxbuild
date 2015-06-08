@@ -30,6 +30,18 @@ Use the following command to update itself
 
   nuget update -self
 
+### CMake
+
+* http://www.cmake.org/
+
+CMake is used for the generation of Project Files for different platforms for libsox
+
+### Swig 3.0
+
+* http://www.swig.org/download.html
+
+Swig is used for the generation of code as part of the wrapper
+
 ## .Net Libraries
 
 ### NLog

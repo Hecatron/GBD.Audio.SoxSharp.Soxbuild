@@ -17,7 +17,7 @@ class DownloadSrcs
     public static void Main(string[] args)
     {
         Logger.Info("Starting Download / Extraction of Sources");
-        var deps = GetDepends();
+		var deps = GetDepends();
         DownloadExtractDepends(deps);
     }
 

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mono binfiles\NuGet.exe restore scripts\packages.config
+mono tools\nuget\NuGet.exe restore scripts\packages.config

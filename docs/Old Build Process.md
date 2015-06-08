@@ -34,6 +34,12 @@ Again there's a script setup for this under bin/
 
 This will download any source archives into build/archive/ and extract the sources into build/libsoxbuild
 
-### Preping the Visual Studio Project Files
+### Generating the Swig Code
 
-There are a set of pre-generated Visual Studio Project files we can use to build libsox and a number of other libraries
+The next step is to run swig against the libsox sources, this should generate 2 parts of the code
+
+ * The first is the C# code we need to include into the library
+ * The second is a header to be included into the libsox build to expose the C functions to the outside
+
+  SwigGenerate.bat
+  SwigGenerate.sh

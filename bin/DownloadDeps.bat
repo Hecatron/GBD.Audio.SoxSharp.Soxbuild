@@ -1,3 +1,3 @@
 @echo off
 
-binfiles\NuGet.exe restore scripts\packages.config
+tools\nuget\NuGet.exe restore scripts\packages.config
