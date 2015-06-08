@@ -20,7 +20,7 @@ public class SwigGenerate
         swigproc.NameSpace = Paths.SwigRootNameSpace;
         string sox_srcdir = Path.Combine(GlobalScript.AbsPath(Paths.ExtractDir), @"sox\src");
         swigproc.IncludeDirectories.Add(sox_srcdir);
-        swigproc.Options = @"-csharp";
+        swigproc.Options = @"-outcurrentdir -csharp";
         swigproc.InputFile = GlobalScript.AbsPath(Paths.SwigInputFile);
         swigproc.OutputDir = GlobalScript.AbsPath(Paths.SwigBuildDir);
 

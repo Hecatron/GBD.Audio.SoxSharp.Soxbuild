@@ -67,14 +67,20 @@ public class SwigProcess
         ProcStartinfo = new ProcessStartInfo {
             FileName = ExePath,
             WorkingDirectory = OutputDir,
-            Arguments = GenerateCmdLineOpts()
+            Arguments = GenerateCmdLineOpts(),
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false
         };
         Logger.Info("Launching swig:");
         Logger.Info("Swig: Exe Path= " + ExePath);
         Logger.Info("Swig: Working Directory= " + OutputDir);
         Logger.Info("Swig: Arguments= " + ProcStartinfo.Arguments);
-        var proc1 =  Process.Start(ProcStartinfo);
-        if (proc1 != null) proc1.WaitForExit();
+        var proc1 = Process.Start(ProcStartinfo);
+        if (proc1 == null) throw new Exception("Process Launch Error");
+        Logger.Info(proc1.StandardOutput.ReadToEnd());
+        Logger.Error(proc1.StandardError.ReadToEnd());
+        proc1.WaitForExit();
     }
 
     #endregion
