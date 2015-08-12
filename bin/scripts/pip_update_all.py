@@ -1,0 +1,1 @@
+import pip, subprocess; [subprocess.call("pip install -U " + d.project_name, shell=1) for d in pip.get_installed_distributions()]
