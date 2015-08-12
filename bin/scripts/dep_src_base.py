@@ -110,6 +110,8 @@ class DepSource(object):
                 newsource.md5hash = source.find('Md5Hash').text
             if source.find('Version') != None:
                 newsource.version = source.find('Version').text
+            if source.find('SubDirMove') != None:
+                newsource.subdirmove = int(source.find('SubDirMove').text)
             ret.append(newsource)
 
         for source in root.findall('HttpSource'):
