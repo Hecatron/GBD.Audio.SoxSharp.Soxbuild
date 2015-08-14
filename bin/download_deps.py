@@ -16,7 +16,6 @@ try:
     log = ScriptLogs.getlogger()
 
     ROOT = abspath(dirname(__file__))
-    #SETTINGS_PATH = abs(DependSettings.get_configfile())
 
     # Load in the Settings from an xml file
     Setts = DependSettings()

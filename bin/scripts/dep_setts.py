@@ -23,6 +23,7 @@ class DependSettings(object):
 
         # Path to the config file
         self.ConfigPath = None
+        self.platform = None
 
         # XML Root Tag
         self.xmlroot = None
@@ -89,16 +90,16 @@ class DependSettings(object):
     def get_configpath(self):
         log = ScriptLogs.getlogger()
         """Determine which config filename / path to use"""
-        osplatform = platform.system()
+        self.platform = platform.system()
         settingsfile = ""
-        if osplatform == "Windows":
+        if self.platform == "Windows":
            settingsfile = "DependSettings_win32.xml"
-        elif osplatform == "Linux":
+        elif self.platform == "Linux":
             settingsfile = "DependSettings_linux.xml"
         else:
             log.critical("Unsupported platform")
             self.ConfigPath = None
-        self.log.info("Platform identified as: " + osplatform)
+        self.log.info("Platform identified as: " + self.platform)
         self.log.info("Settings file: " + settingsfile)
         self.ConfigPath = abspath(settingsfile)
         return self.ConfigPath

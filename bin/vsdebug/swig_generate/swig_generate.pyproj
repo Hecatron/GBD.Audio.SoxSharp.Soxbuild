@@ -30,6 +30,15 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\scripts\dep_setts.py">
+      <Link>scripts\dep_setts.py</Link>
+    </Compile>
+    <Compile Include="..\..\scripts\dep_src_base.py">
+      <Link>scripts\dep_src_base.py</Link>
+    </Compile>
+    <Compile Include="..\..\scripts\dep_src_http.py">
+      <Link>scripts\dep_src_http.py</Link>
+    </Compile>
     <Compile Include="..\..\scripts\script_logs.py">
       <Link>scripts\script_logs.py</Link>
     </Compile>
