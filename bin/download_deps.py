@@ -3,7 +3,7 @@
 This script can be used to download depends required for cmake mbed
 """
 
-import sys, platform, logging
+import sys, logging
 from scripts.dep_setts import DependSettings
 from scripts.script_logs import ScriptLogs
 from os.path import abspath, dirname
@@ -16,20 +16,13 @@ try:
     log = ScriptLogs.getlogger()
 
     ROOT = abspath(dirname(__file__))
-    osplatform = platform.system()
-
-    if osplatform == "Windows":
-        SETTINGS_PATH = abspath('DependSettings_win32.xml')
-    elif osplatform == "Linux":
-        SETTINGS_PATH = abspath('DependSettings_linux.xml')
-    else:
-        log.critical("Unsupported platform")
-        sys.exit(1)
-    log.info("Platform identified as: " + osplatform)
+    #SETTINGS_PATH = abs(DependSettings.get_configfile())
 
     # Load in the Settings from an xml file
     Setts = DependSettings()
-    Setts.loadxml(SETTINGS_PATH)
+    Setts.get_configpath()
+    if Setts.ConfigPath == None: sys.exit(1)
+    Setts.loadxml()
 
     # Download and Extract all sources
     Setts.getdeps()

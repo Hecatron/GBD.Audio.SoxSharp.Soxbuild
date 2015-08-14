@@ -5,7 +5,7 @@ Coloured logging beween modules
 import logging, inspect
 from colorlog import ColoredFormatter
 
-# XML Settings for Download of Depends
+# Wrapper class for logging
 class ScriptLogs(object):
 
     LogLevel = logging.DEBUG
