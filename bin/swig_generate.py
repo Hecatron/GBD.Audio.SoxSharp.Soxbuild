@@ -27,14 +27,14 @@ try:
 
     # Setup the Swig Process
     swgproc = SwigProcess()
-    swgproc.ExePath = join(Setts.DepsDirectory, "swig", "swig.exe")
+    swgproc.ExePath = join(Setts.DepsDirectory, "packages", "swig", "swig.exe")
     swgproc.Namespace = "GBD.Audio.SoxSharp.Swig"
-    swgproc.SrcDir = join(Setts.DepsDirectory, "sox", "src")
+    swgproc.SrcDir = join(Setts.DepsDirectory, "packages", "sox", "src")
     swgproc.IncludeDirectories.append(swgproc.SrcDir)
     swgproc.Options.append("-outcurrentdir")
     swgproc.Options.append("-csharp")
     swgproc.InputFile = abspath(join("../src/", SoxVersion, "swig-win", "swig.i"))
-    swgproc.OutputDir = join(Setts.DepsDirectory, "sox_swig_csharp")
+    swgproc.OutputDir = join(Setts.DepsDirectory, "sox_swigcsharp")
 
     if Setts.platform == "Windows":
         # VS 2013

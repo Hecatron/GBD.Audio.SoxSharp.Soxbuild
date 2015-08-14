@@ -16,32 +16,41 @@ At the moment we only have cmake files for libsox, not the other libraries, so I
 
 ## Build Steps
 
-### Download .Net Dependencies
+### Download Srcs
 
-The first step is to download any .Net dependencies required as part of the build process.
-I've already included the depends for this stage in the repo.
-But there should be a script setup to download them via Nuget under the bin/ directory
+The first step is to download all the sources and exes for swig and libsox, along with all the src
+for the libs that libsox depends on
 
-  DownloadDeps.bat
-  DownloadDeps.sh
+  cd bin
+  download_deps.py
 
-This will download any .Net depends into the deps/ directory.
+This will download all the sources needed and swig into **build\packages**
+the directory build\Archive is just a temporary directory used when downloading and extracting the source archive files
 
-### Download Sources
+### Generate Swig C# Files
 
-The next step is to download all required source code associated with libsox.
-Again there's a script setup for this under bin/
+The next step is to generate the C# Files from the sox source
 
-  DownloadSrcs.bat
-  DownloadSrcs.sh
+  cd bin
+  swig_generate.py
 
-This will download any source archives into build/archive/ and extract the sources into build/libsoxbuild
+This will generate a bunch of .cs files we can use later on for the .Net wrapper library
+and a swig_wrap.c file that we need to include / compile into libsox for the wrapper to work
 
-### Generate Build Project Files
+### Generate Sox CMake Files
 
-Next we need to generate the Project Files via CMake
+Next step is to generate cmake files for libsox
 
-  CMakeGenerate.bat
-  CMakeGenerate.sh
+  cd bin
+  cmake_generate.py
 
-Note TODO this only generates project files for libsox so far, we need to look at other projects next
+This should generate some solution and project files under build\cmake we can use to build the library
+Note for libsox Visual Studio 2015 doesn't currently work as a cmake generator target, this has to do with
+internal changes to the iobuf / FILE structures that libsox relies on
+
+ * http://stackoverflow.com/questions/31150635/build-error-in-visual-studio-in-perlio-h-and-iobuf
+
+TODO
+
+  * This only generates project files for libsox so far, we need to look at other projects next
+  * We need to copy the src/sox-14.4.2/soxconfig.h.cmake into the output directory and configure it to use external libs

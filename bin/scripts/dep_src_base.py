@@ -58,13 +58,6 @@ class DepSource(object):
         else:
             raise ValueError("File Extension: " + extension + " Not supported")
 
-        # Move subdir to parent if required
-        for x in range(0, self.subdirmove):
-            self.log.info("Moving source directory to parent")
-            # Avoid issues with directory locking
-            time.sleep(1)
-            self.movetoparent()
-
         return True
 
     # Delete the downloaded archive file
@@ -76,6 +69,13 @@ class DepSource(object):
             return True
         else:
             return False
+
+    def movetoparent_multiple(self):
+        # Move subdir to parent if required
+        for x in range(0, self.subdirmove):
+            self.log.info("Moving source directory to parent: " + self.destsubdir)
+            # Avoid issues with directory locking
+            self.movetoparent()
 
     # Some sources include a subdirectory with a name / version inside
     # This just moves things around so that all the source sits at the top of the directory within deps

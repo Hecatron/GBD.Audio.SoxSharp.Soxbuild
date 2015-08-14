@@ -85,6 +85,10 @@ class DependSettings(object):
 
             # Remove the archive file
             source.remove_archivefile()
+
+        # Re-jig the directories for those that need it
+        for source in self.sources:
+            source.movetoparent_multiple()
         return
 
     def get_configpath(self):
@@ -93,9 +97,9 @@ class DependSettings(object):
         self.platform = platform.system()
         settingsfile = ""
         if self.platform == "Windows":
-           settingsfile = "DependSettings_win32.xml"
+           settingsfile = "Settings_win32.xml"
         elif self.platform == "Linux":
-            settingsfile = "DependSettings_linux.xml"
+            settingsfile = "Settings_linux.xml"
         else:
             log.critical("Unsupported platform")
             self.ConfigPath = None
