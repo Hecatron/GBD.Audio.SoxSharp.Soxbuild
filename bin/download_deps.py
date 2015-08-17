@@ -4,16 +4,16 @@ This script can be used to download depends required for cmake mbed
 """
 
 import sys, logging
-from scripts.dep_setts import DependSettings
-from scripts.script_logs import ScriptLogs
+from pylib.depend.depsettings import DependSettings
+from pylib.logwrapper import LogWrapper
 from os.path import abspath, dirname
 
 try:
 
     # Setup logging
-    ScriptLogs.LogLevel = logging.DEBUG
-    ScriptLogs.setup()
-    log = ScriptLogs.getlogger()
+    LogWrapper.LogLevel = logging.DEBUG
+    LogWrapper.setup()
+    log = LogWrapper.getlogger()
 
     ROOT = abspath(dirname(__file__))
 
@@ -32,7 +32,7 @@ try:
 # Output any errors
 except Exception as e:
     log.critical (e)
-    if ScriptLogs.LogLevel == logging.DEBUG:
+    if LogWrapper.LogLevel == logging.DEBUG:
         import traceback
         traceback.print_exc(file=sys.stdout)
     sys.exit(1)

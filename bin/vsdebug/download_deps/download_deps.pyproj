@@ -32,17 +32,17 @@
     <Compile Include="..\..\download_deps.py">
       <Link>download_deps.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_setts.py">
-      <Link>scripts\dep_setts.py</Link>
+    <Compile Include="..\..\pylib\depend\dephttp.py">
+      <Link>pylib\depend\dephttp.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_base.py">
-      <Link>scripts\dep_src_base.py</Link>
+    <Compile Include="..\..\pylib\depend\depsettings.py">
+      <Link>pylib\depend\depsettings.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_http.py">
-      <Link>scripts\dep_src_http.py</Link>
+    <Compile Include="..\..\pylib\depend\depsource.py">
+      <Link>pylib\depend\depsource.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\script_logs.py">
-      <Link>scripts\script_logs.py</Link>
+    <Compile Include="..\..\pylib\logwrapper.py">
+      <Link>pylib\logwrapper.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -50,8 +50,9 @@
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="pylib\" />
+    <Folder Include="pylib\depend\" />
     <Folder Include="settings\" />
-    <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\Settings_win32.xml">

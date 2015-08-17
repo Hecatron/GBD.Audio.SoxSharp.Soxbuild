@@ -1,11 +1,11 @@
-"""
+﻿"""
 Http related sources
 """
 
 import sys, os, wget, hashlib
 from os.path import join, exists
-from scripts.script_logs import ScriptLogs
-from scripts.dep_src_base import DepSource
+from pylib.logwrapper import LogWrapper
+from pylib.depend.depsource import DepSource
 
 PY3K = sys.version_info >= (3, 0)
 if PY3K:

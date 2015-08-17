@@ -10,8 +10,8 @@ except ImportError:
 
 import platform
 from os.path import join, abspath, exists
-from scripts.script_logs import ScriptLogs
-from scripts.dep_src_base import DepSource
+from pylib.logwrapper import LogWrapper
+from pylib.depend.depsource import DepSource
 
 # XML Settings for Download of Depends
 class DependSettings(object):
@@ -19,7 +19,7 @@ class DependSettings(object):
     def __init__(self):
         """Dependency Settings"""
         super().__init__()
-        self.log = ScriptLogs.getlogger()
+        self.log = LogWrapper.getlogger()
 
         # Path to the config file
         self.ConfigPath = None
@@ -92,7 +92,7 @@ class DependSettings(object):
         return
 
     def get_configpath(self):
-        log = ScriptLogs.getlogger()
+        log = LogWrapper.getlogger()
         """Determine which config filename / path to use"""
         self.platform = platform.system()
         settingsfile = ""

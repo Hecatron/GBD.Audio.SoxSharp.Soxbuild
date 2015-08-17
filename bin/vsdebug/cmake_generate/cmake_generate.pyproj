@@ -6,7 +6,7 @@
     <ProjectGuid>82fbffd0-a107-49a6-9a5d-8843926811e5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>..\..\cmake_generate.py</StartupFile>
-    <SearchPath>..\..\;..\..\scripts\</SearchPath>
+    <SearchPath>..\..\;..\..\scripts\;..\..\pylib\cmake\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>cmake_generate</Name>
@@ -30,26 +30,34 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="scripts\" />
+    <Folder Include="pylib\" />
+    <Folder Include="pylib\depend\" />
+    <Folder Include="pylib\cmake\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\cmake_generate.py">
       <Link>cmake_generate.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\cmake_process.py">
-      <Link>scripts\cmake_process.py</Link>
+    <Compile Include="..\..\pylib\cmake\cmake_process.py">
+      <Link>pylib\cmake\cmake_process.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_setts.py">
-      <Link>scripts\dep_setts.py</Link>
+    <Compile Include="..\..\pylib\depend\dephttp.py">
+      <Link>pylib\depend\dephttp.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_base.py">
-      <Link>scripts\dep_src_base.py</Link>
+    <Compile Include="..\..\pylib\depend\depsettings.py">
+      <Link>pylib\depend\depsettings.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_http.py">
-      <Link>scripts\dep_src_http.py</Link>
+    <Compile Include="..\..\pylib\depend\depsource.py">
+      <Link>pylib\depend\depsource.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\script_logs.py">
-      <Link>scripts\script_logs.py</Link>
+    <Compile Include="..\..\pylib\logwrapper.py">
+      <Link>pylib\logwrapper.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\patch.py">
+      <Link>pylib\patch.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\process.py">
+      <Link>pylib\process.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

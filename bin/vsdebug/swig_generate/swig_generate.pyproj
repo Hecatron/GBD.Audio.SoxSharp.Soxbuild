@@ -6,7 +6,7 @@
     <ProjectGuid>c172dc6f-de81-45c2-af15-a3f95b195d07</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>..\..\swig_generate.py</StartupFile>
-    <SearchPath>..\..\;..\..\scripts\</SearchPath>
+    <SearchPath>..\..\;..\..\scripts\;..\..\pylib\swig\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>swig_generate</Name>
@@ -30,27 +30,32 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\scripts\dep_setts.py">
-      <Link>scripts\dep_setts.py</Link>
+    <Compile Include="..\..\pylib\depend\dephttp.py">
+      <Link>pylib\depend\dephttp.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_base.py">
-      <Link>scripts\dep_src_base.py</Link>
+    <Compile Include="..\..\pylib\depend\depsettings.py">
+      <Link>pylib\depend\depsettings.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\dep_src_http.py">
-      <Link>scripts\dep_src_http.py</Link>
+    <Compile Include="..\..\pylib\depend\depsource.py">
+      <Link>pylib\depend\depsource.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\script_logs.py">
-      <Link>scripts\script_logs.py</Link>
+    <Compile Include="..\..\pylib\logwrapper.py">
+      <Link>pylib\logwrapper.py</Link>
     </Compile>
-    <Compile Include="..\..\scripts\swig_process.py">
-      <Link>scripts\swig_process.py</Link>
+    <Compile Include="..\..\pylib\process.py">
+      <Link>pylib\process.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\swig\swig_process.py">
+      <Link>pylib\swig\swig_process.py</Link>
     </Compile>
     <Compile Include="..\..\swig_generate.py">
       <Link>swig_generate.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="scripts\" />
+    <Folder Include="pylib\" />
+    <Folder Include="pylib\depend\" />
+    <Folder Include="pylib\swig\" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />

@@ -6,7 +6,7 @@ import logging, inspect
 from colorlog import ColoredFormatter
 
 # Wrapper class for logging
-class ScriptLogs(object):
+class LogWrapper(object):
 
     LogLevel = logging.DEBUG
     LogFormat = None
@@ -14,13 +14,13 @@ class ScriptLogs(object):
 
     @staticmethod
     def setup():
-        #ScriptLogs.LogFormat = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
-        ScriptLogs.LogFormat = "%(log_color)s[%(asctime)s]:%(levelname)-7s:%(message)s"
-        logging.root.setLevel(ScriptLogs.LogLevel)
-        formatter = ColoredFormatter(ScriptLogs.LogFormat)
-        ScriptLogs.LogStream = logging.StreamHandler()
-        ScriptLogs.LogStream.setLevel(ScriptLogs.LogLevel)
-        ScriptLogs.LogStream.setFormatter(formatter)
+        #LogWrapper.LogFormat = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
+        LogWrapper.LogFormat = "%(log_color)s[%(asctime)s]:%(levelname)-7s:%(message)s"
+        logging.root.setLevel(LogWrapper.LogLevel)
+        formatter = ColoredFormatter(LogWrapper.LogFormat)
+        LogWrapper.LogStream = logging.StreamHandler()
+        LogWrapper.LogStream.setLevel(LogWrapper.LogLevel)
+        LogWrapper.LogStream.setFormatter(formatter)
 
     @staticmethod
     def getlogger(modname = None):
@@ -31,13 +31,13 @@ class ScriptLogs(object):
 
         # Setup Logger
         log = logging.getLogger(modname)
-        log.setLevel(ScriptLogs.LogLevel)
-        log.addHandler(ScriptLogs.LogStream)
+        log.setLevel(LogWrapper.LogLevel)
+        log.addHandler(LogWrapper.LogStream)
         return log
 
     @staticmethod
     def testoutput():
-        log = ScriptLogs.getlogger()
+        log = LogWrapper.getlogger()
         log.debug("this is a debugging message")
         log.info("this is an informational message")
         log.warn("this is a warning message")

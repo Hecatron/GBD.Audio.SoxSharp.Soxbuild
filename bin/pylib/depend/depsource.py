@@ -4,7 +4,7 @@ Module for dependency source downloads
 
 import os, glob, shutil, zipfile, tarfile, time
 from os.path import join, abspath, exists
-from scripts.script_logs import ScriptLogs
+from pylib.logwrapper import LogWrapper
 
 # Source Base Class
 class DepSource(object):
@@ -20,7 +20,7 @@ class DepSource(object):
         self.arch_filename = ""
         self.arch_filepath = ""
         self.subdirmove = 0
-        self.log = ScriptLogs.getlogger()
+        self.log = LogWrapper.getlogger()
 
     def download(self):
         return True
@@ -100,7 +100,7 @@ class DepSource(object):
     def parsexml(root):
         ret = []
 
-        from scripts.dep_src_http import HttpSource, GitHubZipSource
+        from pylib.depend.dephttp import HttpSource, GitHubZipSource
 
         for source in root.findall('FileExtract'):
             newsource = FileExtract(
