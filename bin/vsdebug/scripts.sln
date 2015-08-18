@@ -9,7 +9,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "swig_generate", "swig_gener
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "download_deps", "download_deps\download_deps.pyproj", "{A9B98BE0-2300-4BD3-9B17-8B39C44F597B}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "cmake_generate", "cmake_generate\cmake_generate.pyproj", "{82FBFFD0-A107-49A6-9A5D-8843926811E5}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "setup_srcs", "setup_srcs\setup_srcs.pyproj", "{82FBFFD0-A107-49A6-9A5D-8843926811E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

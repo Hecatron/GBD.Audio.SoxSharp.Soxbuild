@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 """
     Patch utility to apply unified diffs
 
@@ -19,7 +19,12 @@ import logging
 import re
 # cStringIO doesn't support unicode in 2.5
 from StringIO import StringIO
-import urllib2
+
+PY3K = sys.version_info >= (3, 0)
+if PY3K:
+  import urllib.request as urllib2
+else:
+  import urllib2
 
 from os.path import exists, isfile, abspath
 import os
@@ -1057,13 +1062,13 @@ class PatchSet(object):
   def dump(self):
     for p in self.items:
       for headline in p.header:
-        print headline.rstrip('\n')
-      print '--- ' + p.source
-      print '+++ ' + p.target
+        print (headline.rstrip('\n'))
+      print ('--- ' + p.source)
+      print ('+++ ' + p.target)
       for h in p.hunks:
-        print '@@ -%s,%s +%s,%s @@' % (h.startsrc, h.linessrc, h.starttgt, h.linestgt)
+        print ('@@ -%s,%s +%s,%s @@' % (h.startsrc, h.linessrc, h.starttgt, h.linestgt))
         for line in h.text:
-          print line.rstrip('\n')
+          print (line.rstrip('\n'))
 
 
 def main():
@@ -1124,7 +1129,7 @@ def main():
       patch = fromfile(patchfile)
 
   if options.diffstat:
-    print patch.diffstat()
+    print (patch.diffstat())
     sys.exit(0)
 
   #pprint(patch)

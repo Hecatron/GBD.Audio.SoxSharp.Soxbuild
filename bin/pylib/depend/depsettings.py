@@ -28,9 +28,11 @@ class DependSettings(object):
         # XML Root Tag
         self.xmlroot = None
 
-        # Directory properties
-        self.DepsDirectory = ""
-        self.ArchiveDirectory = ""
+        # custom properties
+        self.DepsDirectory = None
+        self.ArchiveDirectory = None
+        self.SoxVersion = None
+        self.CMakeGenerator = None
 
         # List of Sources
         self.sources = []
@@ -49,11 +51,13 @@ class DependSettings(object):
         if self.xmlroot.tag != 'Settings':
             raise ValueError('Root Element is not Settings')
 
-        # Directory Settings
+        # Custom Settings
         self.DepsDirectory = self.read_element('DepsDirectory')
         self.DepsDirectory = abspath(self.DepsDirectory)
         self.ArchiveDirectory = self.read_element('ArchiveDirectory')
         self.ArchiveDirectory = join(self.DepsDirectory, self.ArchiveDirectory)
+        self.SoxVersion = self.read_element('SoxVersion')
+        self.CMakeGenerator = self.read_element('CMakeGenerator')
 
         # Set the Archive directory for downloaded sources
         DepSource.ArchiveDir = self.ArchiveDirectory

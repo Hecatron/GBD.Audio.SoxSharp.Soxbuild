@@ -16,7 +16,6 @@ try:
     LogWrapper.setup()
     log = LogWrapper.getlogger()
 
-    SoxVersion = "sox-14.4.2"
     ROOT = abspath(dirname(__file__))
 
     # Load in the Settings from an xml file
@@ -24,6 +23,8 @@ try:
     Setts.get_configpath()
     if Setts.ConfigPath == None: sys.exit(1)
     Setts.loadxml()
+
+    soxverstring = "sox-" + Setts.SoxVersion
 
     # Setup the Swig Process
     swgproc = SwigProcess()
@@ -33,7 +34,7 @@ try:
     swgproc.IncludeDirectories.append(join(Setts.DepsDirectory, "packages", "sox", "src"))
     swgproc.Options.append("-outcurrentdir")
     swgproc.Options.append("-csharp")
-    swgproc.InputFile = abspath(join("../src/", SoxVersion, "swig-win", "swig.i"))
+    swgproc.InputFile = abspath(join("../src/", soxverstring, "swig-win", "swig.i"))
 
     if Setts.platform == "Windows":
         # VS 2013

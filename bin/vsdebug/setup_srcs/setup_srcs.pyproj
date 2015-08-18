@@ -4,12 +4,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>82fbffd0-a107-49a6-9a5d-8843926811e5</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>..\..\cmake_generate.py</StartupFile>
-    <SearchPath>..\..\;..\..\scripts\;..\..\pylib\cmake\</SearchPath>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>..\..\setup_srcs.py</StartupFile>
+    <SearchPath>..\..\;..\..\scripts\;..\..\pylib\cmake\;..\..\pylib\patching\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>cmake_generate</Name>
+    <Name>setup_srcs</Name>
     <RootNamespace>cmake_generate</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
@@ -33,10 +34,11 @@
     <Folder Include="pylib\" />
     <Folder Include="pylib\depend\" />
     <Folder Include="pylib\cmake\" />
+    <Folder Include="pylib\patching\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\cmake_generate.py">
-      <Link>cmake_generate.py</Link>
+    <Compile Include="..\..\pylib\cmake\cmake_gen.py">
+      <Link>pylib\cmake\cmake_gen.py</Link>
     </Compile>
     <Compile Include="..\..\pylib\cmake\cmake_process.py">
       <Link>pylib\cmake\cmake_process.py</Link>
@@ -56,8 +58,14 @@
     <Compile Include="..\..\pylib\patch.py">
       <Link>pylib\patch.py</Link>
     </Compile>
+    <Compile Include="..\..\pylib\patching\patch_gen.py">
+      <Link>pylib\patching\patch_gen.py</Link>
+    </Compile>
     <Compile Include="..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
+    </Compile>
+    <Compile Include="..\..\setup_srcs.py">
+      <Link>setup_srcs.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
