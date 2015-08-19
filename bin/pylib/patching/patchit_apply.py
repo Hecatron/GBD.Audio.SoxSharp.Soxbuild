@@ -1,10 +1,11 @@
-"""
+﻿"""
 Wrapper for patchit for applying patches to multiple files
 """
 
 # This module uses patchit from https://pypi.python.org/pypi/patchit/1.1
 
-import os, patchit
+import os
+from pylib.patching.patchit import PatchSet
 
 # Wrapper class for patching sources
 class PatchitApply(object):
@@ -18,7 +19,7 @@ class PatchitApply(object):
     # Apply a Patch file to the given directory
     def Apply(self):
         with open(self.patchfile) as patch_hand:
-            patches = patchit.PatchSet.from_stream(patch_hand)
+            patches = PatchSet.from_stream(patch_hand)
 
             for patchitem in patches:
                 # Figure out the path of the file to patch

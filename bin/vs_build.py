@@ -33,10 +33,12 @@ try:
 
     # Build libsox
     msbuildproc = MSBuildProcess(join(cmakebuild_dir, "sox", "sox.sln"))
-    msbuildproc.Target = "libsox:Clean"
-    msbuildproc.Start()
-    msbuildproc.Target = "libsox:Rebuild"
-    msbuildproc.Start()
+    msbuildproc.Start(tgt = "gsm:Clean")
+    msbuildproc.Start(tgt = "gsm:Rebuild")
+    msbuildproc.Start(tgt = "lpc10:Clean")
+    msbuildproc.Start(tgt = "lpc10:Rebuild")
+    msbuildproc.Start(tgt = "libsox:Clean")
+    msbuildproc.Start(tgt = "libsox:Rebuild")
 
 # Output any errors
 except Exception as e:

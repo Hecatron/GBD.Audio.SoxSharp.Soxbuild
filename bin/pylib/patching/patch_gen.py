@@ -6,7 +6,7 @@ import shutil, subprocess, os
 from pylib.logwrapper import LogWrapper
 from pylib.cmake.cmake_process import CMakeProcess
 from os.path import abspath, dirname, join
-from patchit_apply import PatchitApply
+from pylib.patching.patchit_apply import PatchitApply
 #from pylib.patching.patch import fromfile as patch_fromfile
 
 # Wrapper class for patching sources

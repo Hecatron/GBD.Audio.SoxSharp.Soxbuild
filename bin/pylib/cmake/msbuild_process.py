@@ -31,7 +31,8 @@ class MSBuildProcess(Process):
         self.AdditionalOptions = None
         self.ExePath = MSBuildProcess.MSBuildExe
 
-    def Start(self):
+    def Start(self, tgt = None):
+        if tgt != None: self.Target = tgt
         self.Options = []
         self.Options = self.Options + self.GenerateCmdLineOpts()
         self.log.info("MSBuild: Launching:")
