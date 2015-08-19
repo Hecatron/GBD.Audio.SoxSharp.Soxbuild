@@ -29,9 +29,9 @@ try:
     patcher = PatchGen(Setts)
     patcher.Start()
 
-    # Start Generation of cmake files
-    generator = CMakeGen(Setts)
-    generator.Start()
+    # Start Generation of cmake files TODO
+    #generator = CMakeGen(Setts)
+    #generator.Start()
 
 # Output any errors
 except Exception as e:

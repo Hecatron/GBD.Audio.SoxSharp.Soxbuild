@@ -55,8 +55,11 @@
     <Compile Include="..\..\pylib\logwrapper.py">
       <Link>pylib\logwrapper.py</Link>
     </Compile>
-    <Compile Include="..\..\pylib\patch.py">
-      <Link>pylib\patch.py</Link>
+    <Compile Include="..\..\pylib\patching\patchit.py">
+      <Link>pylib\patching\patchit.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\patching\patchit_apply.py">
+      <Link>pylib\patching\patchit_apply.py</Link>
     </Compile>
     <Compile Include="..\..\pylib\patching\patch_gen.py">
       <Link>pylib\patching\patch_gen.py</Link>

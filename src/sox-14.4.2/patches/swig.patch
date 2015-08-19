@@ -1,0 +1,10 @@
+--- packages\sox\src\CMakeLists.txt	2014-10-30 03:29:54.000000000 +0000
++++ patched\sox\src\CMakeLists.txt	2015-08-18 17:48:01.263375700 +0100
+@@ -76,6 +76,7 @@
+   vol
+ )
+ set(formats_srcs
++  swig_wrap.c
+   8svx
+   adpcm
+   adpcms
