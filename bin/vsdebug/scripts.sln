@@ -11,6 +11,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "download_deps", "download_d
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "setup_srcs", "setup_srcs\setup_srcs.pyproj", "{82FBFFD0-A107-49A6-9A5D-8843926811E5}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "vs_build", "vs_build\vs_build.pyproj", "{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -31,5 +35,6 @@ Global
 		{C172DC6F-DE81-45C2-AF15-A3F95B195D07} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
 		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
+		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
 	EndGlobalSection
 EndGlobal

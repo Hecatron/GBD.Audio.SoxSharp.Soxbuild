@@ -7,7 +7,7 @@
     <ProjectHome>
     </ProjectHome>
     <StartupFile>..\..\download_deps.py</StartupFile>
-    <SearchPath>..\..\;..\..\scripts\</SearchPath>
+    <SearchPath>..\..\;..\..\pylib\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>download_deps</Name>

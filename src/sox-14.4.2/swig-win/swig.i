@@ -1,7 +1,7 @@
 %module libsox
  %{
  /* Includes the header in the wrapper code */
- #include "../sox-14.4.1/src/sox.h"
+ #include "sox.h"
  %}
 
  /* Add a constructor that can take a IntPtr, and a return of the pointer */

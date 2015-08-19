@@ -30,8 +30,8 @@ try:
     patcher.Start()
 
     # Start Generation of cmake files TODO
-    #generator = CMakeGen(Setts)
-    #generator.Start()
+    generator = CMakeGen(Setts)
+    generator.Start()
 
 # Output any errors
 except Exception as e:

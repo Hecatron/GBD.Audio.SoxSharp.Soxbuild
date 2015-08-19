@@ -18,14 +18,16 @@ class CMakeProcess(Process):
         self.AdditionalOptions = None
         self.SrcDir = None
 
-    def Start(self):
-        self.log.info("Starting generation of cmake files")
-
+    def SetupOutputDir(self):
         # Setup Output directory
         if os.path.exists(self.WorkingDir):
             self.log.warn("Cleaning Output Directory: " + self.WorkingDir)
             shutil.rmtree(self.WorkingDir, ignore_errors=True)
         os.makedirs(self.WorkingDir)
+        return
+
+    def Start(self):
+        self.log.info("Starting generation of cmake files")
 
         if self.Options == None: self.Options = []
         self.Options = self.Options + self.GenerateCmdLineOpts()

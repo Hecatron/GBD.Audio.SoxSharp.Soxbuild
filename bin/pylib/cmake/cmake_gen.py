@@ -16,6 +16,11 @@ class CMakeGen(object):
         self.log = LogWrapper.getlogger()
         self.Setts = Setts
 
+        # Directory properties
+        self.PackagesDir = abspath(join(self.Setts.DepsDirectory, "packages"))
+        self.PatchedDir = abspath(join(self.Setts.DepsDirectory, "patched"))
+        self.SrcDir = abspath(join(self.Setts.DepsDirectory, "..", "src"))
+
     # Get the generator based on platform
     def getgenerator(self):
         ret = None
@@ -40,6 +45,13 @@ class CMakeGen(object):
         cmakeproc = CMakeProcess()
         cmakeproc.ExePath = "cmake.exe"
         cmakeproc.WorkingDir = join(self.Setts.DepsDirectory, "cmake", "sox")
-        cmakeproc.SrcDir = join(self.Setts.DepsDirectory, "packages", "sox")
+        cmakeproc.SrcDir = join(self.Setts.DepsDirectory, "patched", "sox")
         cmakeproc.Generator = self.Setts.CMakeGenerator
+        cmakeproc.SetupOutputDir()
+
+        # Copy over needed files for cmake
+        sox_cmakefile = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "cmake", "soxconfig.h.cmake")
+        shutil.copy(sox_cmakefile, cmakeproc.WorkingDir)
+
+        # Start cmake generation
         cmakeproc.Start()

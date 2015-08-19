@@ -20,7 +20,7 @@ class PatchGen(object):
         # Directory properties
         self.PackagesDir = abspath(join(self.Setts.DepsDirectory, "packages"))
         self.PatchedDir = abspath(join(self.Setts.DepsDirectory, "patched"))
-        self.PatchesDir = abspath(join(self.Setts.DepsDirectory, "..", "src", "sox-" + self.Setts.SoxVersion, "patches"))
+        self.SrcDir = abspath(join(self.Setts.DepsDirectory, "..", "src"))
         return
 
     # Start the source patching
@@ -49,7 +49,8 @@ class PatchGen(object):
         shutil.copy(sox_wrapperfile, join(soxdir, "src"))
 
         # Apply patch
-        patch1 = PatchitApply(join(self.PatchesDir, "swig.patch"), self.PatchedDir, 1)
+        soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
+        patch1 = PatchitApply(join(soxpatchdir, "swig.patch"), self.PatchedDir, 1)
         patch1.Apply()
 
         

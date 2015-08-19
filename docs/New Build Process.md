@@ -39,10 +39,10 @@ and a swig_wrap.c file that we need to include / compile into libsox for the wra
 
 ### Generate Sox CMake Files
 
-Next step is to generate cmake files for libsox
+Next step is to patch the sources and generate cmake files
 
   cd bin
-  cmake_generate.py
+  setup_srcs.py
 
 This should generate some solution and project files under build\cmake we can use to build the library
 Note for libsox Visual Studio 2015 doesn't currently work as a cmake generator target, this has to do with
@@ -50,7 +50,15 @@ internal changes to the iobuf / FILE structures that libsox relies on
 
  * http://stackoverflow.com/questions/31150635/build-error-in-visual-studio-in-perlio-h-and-iobuf
 
-TODO
+### Build Projects - Visual Studio
+
+To build the library sources under Visual Studio / msbuild
+
+  cd bin
+  vs_build.py
+
+### TODO Files
 
   * This only generates project files for libsox so far, we need to look at other projects next
-  * We need to copy the src/sox-14.4.2/soxconfig.h.cmake into the output directory and configure it to use external libs
+  * Linux support
+  * configure soxconfig.h.cmake in the sox cmake directory and set it to use external libs
