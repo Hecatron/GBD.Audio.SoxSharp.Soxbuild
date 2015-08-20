@@ -3,21 +3,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a9b98be0-2300-4bd3-9b17-8b39c44f597b</ProjectGuid>
+    <ProjectGuid>c172dc6f-de81-45c2-af15-a3f95b195d07</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>..\..\download_deps.py</StartupFile>
+    <StartupFile>..\..\generate_swig.py</StartupFile>
     <SearchPath>..\..\;..\..\pylib\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>download_deps</Name>
-    <RootNamespace>downloaddeps</RootNamespace>
+    <Name>generate_swig</Name>
+    <RootNamespace>swig_generate</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>
-    </CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -28,9 +26,13 @@
     <DebugSymbols>true</DebugSymbols>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\download_deps.py">
-      <Link>download_deps.py</Link>
+    <Compile Include="..\..\generate_swig.py">
+      <Link>generate_swig.py</Link>
     </Compile>
     <Compile Include="..\..\pylib\depend\dephttp.py">
       <Link>pylib\depend\dephttp.py</Link>
@@ -44,25 +46,21 @@
     <Compile Include="..\..\pylib\logwrapper.py">
       <Link>pylib\logwrapper.py</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
+    <Compile Include="..\..\pylib\process.py">
+      <Link>pylib\process.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\swig\swig_process.py">
+      <Link>pylib\swig\swig_process.py</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pylib\" />
     <Folder Include="pylib\depend\" />
-    <Folder Include="settings\" />
+    <Folder Include="pylib\swig\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Settings_win32.xml">
-      <Link>settings\Settings_win32.xml</Link>
-    </Content>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
   </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
-  </PropertyGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

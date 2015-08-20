@@ -238,6 +238,8 @@ class PatchSetReader(object):
 
             hunk_dict = self.__parse_to_dict(hunk_head_re, line)
             if hunk_dict:
+                if hunk_dict['a2'] == None: hunk_dict['a2'] = 0
+                if hunk_dict['b2'] == None: hunk_dict['b2'] = 0
                 self.__handle_hunk(hunk_dict)
                 continue
 

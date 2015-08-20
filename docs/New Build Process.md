@@ -22,7 +22,7 @@ The first step is to download all the sources and exes for swig and libsox, alon
 for the libs that libsox depends on
 
   cd bin
-  download_deps.py
+  download_srcss.py
 
 This will download all the sources needed and swig into **build\packages**
 the directory build\Archive is just a temporary directory used when downloading and extracting the source archive files
@@ -31,20 +31,25 @@ the directory build\Archive is just a temporary directory used when downloading 
 
 The next step is to generate the C# Files from the sox source
 
-  cd bin
-  swig_generate.py
+  generate_swig.py
 
-This will generate a bunch of .cs files we can use later on for the .Net wrapper library
+This will generate a bunch of .cs files we can use later on for the .Net wrapper library within build\sox_swigcsharp
 and a swig_wrap.c file that we need to include / compile into libsox for the wrapper to work
+
+### Patch Sources
+
+The next step is to patch the sources for changes we need to make
+the patches are pulled from within the src directory
+
+  patch_srcs.py
 
 ### Generate Sox CMake Files
 
-Next step is to patch the sources and generate cmake files
+Next step is to generate the cmake files for building
+  
+  generate_cmake.py
 
-  cd bin
-  setup_srcs.py
-
-This should generate some solution and project files under build\cmake we can use to build the library
+This should generate some solution and project files under build\cmake we can use to build the library and depends.
 Note for libsox Visual Studio 2015 doesn't currently work as a cmake generator target, this has to do with
 internal changes to the iobuf / FILE structures that libsox relies on
 
@@ -54,7 +59,6 @@ internal changes to the iobuf / FILE structures that libsox relies on
 
 To build the library sources under Visual Studio / msbuild
 
-  cd bin
   vs_build.py
 
 ### TODO Files

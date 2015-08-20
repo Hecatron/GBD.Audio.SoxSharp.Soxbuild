@@ -6,11 +6,11 @@
     <ProjectGuid>82fbffd0-a107-49a6-9a5d-8843926811e5</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>..\..\setup_srcs.py</StartupFile>
-    <SearchPath>..\..\;..\..\scripts\;..\..\pylib\cmake\;..\..\pylib\patching\</SearchPath>
+    <StartupFile>..\..\generate_cmake.py</StartupFile>
+    <SearchPath>..\..\;..\..\pylib\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>setup_srcs</Name>
+    <Name>generate_cmake</Name>
     <RootNamespace>cmake_generate</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
@@ -37,6 +37,9 @@
     <Folder Include="pylib\patching\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\generate_cmake.py">
+      <Link>generate_cmake.py</Link>
+    </Compile>
     <Compile Include="..\..\pylib\cmake\cmake_gen.py">
       <Link>pylib\cmake\cmake_gen.py</Link>
     </Compile>
@@ -66,9 +69,6 @@
     </Compile>
     <Compile Include="..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
-    </Compile>
-    <Compile Include="..\..\setup_srcs.py">
-      <Link>setup_srcs.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

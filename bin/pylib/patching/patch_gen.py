@@ -45,12 +45,14 @@ class PatchGen(object):
         soxdir = self.copysrctopatched("sox")
 
         # Copy swig .c wrapper into src directory
+        self.log.info("Copying swig_wrap.c into sox src directory")
         sox_wrapperfile = abspath(join(self.Setts.DepsDirectory, "sox_swigcsharp", "swig_wrap.c"))
         shutil.copy(sox_wrapperfile, join(soxdir, "src"))
 
-        # Apply patch TODO
-        #soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
-        #patch1 = PatchitApply(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
-        #patch1.Apply()
+        # Apply patch
+        self.log.info("Applying patch libsoxv1.patch")
+        soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
+        patch1 = PatchitApply(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
+        patch1.Apply()
 
         
