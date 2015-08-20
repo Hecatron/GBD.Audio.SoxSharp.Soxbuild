@@ -6,7 +6,7 @@ This script can be used to generate C# Sources from libsox via swig
 import sys, logging
 from pylib.depend.depsettings import DependSettings
 from pylib.logwrapper import LogWrapper
-from pylib.swig.swig_process import SwigProcess
+from pylib.subproc.swig_process import SwigProcess
 from os.path import abspath, dirname, join
 
 try:

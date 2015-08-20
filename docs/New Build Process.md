@@ -36,30 +36,21 @@ The next step is to generate the C# Files from the sox source
 This will generate a bunch of .cs files we can use later on for the .Net wrapper library within build\sox_swigcsharp
 and a swig_wrap.c file that we need to include / compile into libsox for the wrapper to work
 
-### Patch Sources
+### Build Sources
 
-The next step is to patch the sources for changes we need to make
-the patches are pulled from within the src directory
+The next step is to patch the sources / run cmake on them / then build them
 
-  patch_srcs.py
+  buil_srcs.py
 
-### Generate Sox CMake Files
+In some cases some of the sources need to be built before cmake can be run on others
+So we do all of this as part of a single script, although each package is broken out into an individual python module
+under pylib/srcs_build
 
-Next step is to generate the cmake files for building
-  
-  generate_cmake.py
-
-This should generate some solution and project files under build\cmake we can use to build the library and depends.
+cmake will generate some solution and project files under build\cmake we can use to build the library and depends.
 Note for libsox Visual Studio 2015 doesn't currently work as a cmake generator target, this has to do with
 internal changes to the iobuf / FILE structures that libsox relies on
 
  * http://stackoverflow.com/questions/31150635/build-error-in-visual-studio-in-perlio-h-and-iobuf
-
-### Build Projects - Visual Studio
-
-To build the library sources under Visual Studio / msbuild
-
-  vs_build.py
 
 ### TODO Files
 

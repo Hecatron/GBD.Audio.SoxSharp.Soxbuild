@@ -3,19 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{E5A61504-EBB4-4681-AD2A-D62883AB15FA}"
-EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "vs_build", "vs_build\vs_build.pyproj", "{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}"
-EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "download_srcs", "download_srcs\download_srcs.pyproj", "{A9B98BE0-2300-4BD3-9B17-8B39C44F597B}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "generate_swig", "generate_swig\generate_swig.pyproj", "{C172DC6F-DE81-45C2-AF15-A3F95B195D07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{B6363B65-A96D-48B6-A342-ACFD6B85CA80}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "patch_srcs", "patch_srcs\patch_srcs.pyproj", "{D3FC8197-6AE3-4351-ADC8-7F5AAE7C9E8A}"
-EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "generate_cmake", "generate_cmake\generate_cmake.pyproj", "{82FBFFD0-A107-49A6-9A5D-8843926811E5}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "build_srcs", "build_srcs\build_srcs.pyproj", "{82FBFFD0-A107-49A6-9A5D-8843926811E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C172DC6F-DE81-45C2-AF15-A3F95B195D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C172DC6F-DE81-45C2-AF15-A3F95B195D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3FC8197-6AE3-4351-ADC8-7F5AAE7C9E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3FC8197-6AE3-4351-ADC8-7F5AAE7C9E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
@@ -38,10 +28,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{59DF2EF5-FA52-4ED0-A34E-489F14BA440C} = {B6363B65-A96D-48B6-A342-ACFD6B85CA80}
-		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
-		{C172DC6F-DE81-45C2-AF15-A3F95B195D07} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
-		{D3FC8197-6AE3-4351-ADC8-7F5AAE7C9E8A} = {E5A61504-EBB4-4681-AD2A-D62883AB15FA}
+		{A9B98BE0-2300-4BD3-9B17-8B39C44F597B} = {B6363B65-A96D-48B6-A342-ACFD6B85CA80}
+		{C172DC6F-DE81-45C2-AF15-A3F95B195D07} = {B6363B65-A96D-48B6-A342-ACFD6B85CA80}
 		{82FBFFD0-A107-49A6-9A5D-8843926811E5} = {B6363B65-A96D-48B6-A342-ACFD6B85CA80}
 	EndGlobalSection
 EndGlobal

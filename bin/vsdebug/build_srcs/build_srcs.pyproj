@@ -3,14 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>d3fc8197-6ae3-4351-adc8-7f5aae7c9e8a</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>..\..\patch_srcs.py</StartupFile>
+    <ProjectGuid>82fbffd0-a107-49a6-9a5d-8843926811e5</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>..\..\build_srcs.py</StartupFile>
     <SearchPath>..\..\;..\..\pylib\</SearchPath>
     <WorkingDirectory>..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>patch_srcs</Name>
-    <RootNamespace>patch_srcs</RootNamespace>
+    <Name>build_srcs</Name>
+    <RootNamespace>cmake_generate</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
@@ -30,8 +31,15 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\patch_srcs.py">
-      <Link>patch_srcs.py</Link>
+    <Folder Include="pylib\" />
+    <Folder Include="pylib\depend\" />
+    <Folder Include="pylib\subproc\" />
+    <Folder Include="pylib\srcs_build\" />
+    <Folder Include="pylib\patching\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\build_srcs.py">
+      <Link>build_srcs.py</Link>
     </Compile>
     <Compile Include="..\..\pylib\depend\dephttp.py">
       <Link>pylib\depend\dephttp.py</Link>
@@ -48,8 +56,8 @@
     <Compile Include="..\..\pylib\patching\patchit.py">
       <Link>pylib\patching\patchit.py</Link>
     </Compile>
-    <Compile Include="..\..\pylib\patching\patchit_file.py">
-      <Link>pylib\patching\patchit_file.py</Link>
+    <Compile Include="..\..\pylib\patching\patchit_apply.py">
+      <Link>pylib\patching\patchit_apply.py</Link>
     </Compile>
     <Compile Include="..\..\pylib\patching\patch_gen.py">
       <Link>pylib\patching\patch_gen.py</Link>
@@ -57,14 +65,35 @@
     <Compile Include="..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
     </Compile>
+    <Compile Include="..\..\pylib\srcs_build\libpng.py">
+      <Link>pylib\srcs_build\libpng.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\srcs_build\libsox.py">
+      <Link>pylib\srcs_build\libsox.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\srcs_build\srcbase.py">
+      <Link>pylib\srcs_build\srcbase.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\srcs_build\zlib.py">
+      <Link>pylib\srcs_build\zlib.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\subproc\cmake_process.py">
+      <Link>pylib\subproc\cmake_process.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\subproc\msbuild_process.py">
+      <Link>pylib\subproc\msbuild_process.py</Link>
+    </Compile>
+    <Compile Include="..\..\pylib\subproc\swig_process.py">
+      <Link>pylib\subproc\swig_process.py</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="pylib\" />
-    <Folder Include="pylib\depend\" />
-    <Folder Include="pylib\patching\" />
+    <Content Include="..\..\pylib\srcs_build\Notes.md">
+      <Link>pylib\srcs_build\Notes.md</Link>
+    </Content>
   </ItemGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

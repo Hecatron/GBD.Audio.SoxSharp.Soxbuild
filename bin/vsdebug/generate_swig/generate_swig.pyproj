@@ -49,14 +49,14 @@
     <Compile Include="..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
     </Compile>
-    <Compile Include="..\..\pylib\swig\swig_process.py">
-      <Link>pylib\swig\swig_process.py</Link>
+    <Compile Include="..\..\pylib\subproc\swig_process.py">
+      <Link>pylib\subproc\swig_process.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pylib\" />
     <Folder Include="pylib\depend\" />
-    <Folder Include="pylib\swig\" />
+    <Folder Include="pylib\subproc\" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
