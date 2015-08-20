@@ -4,10 +4,8 @@ Main module for patching the sources
 
 import shutil, subprocess, os
 from pylib.logwrapper import LogWrapper
-from pylib.cmake.cmake_process import CMakeProcess
 from os.path import abspath, dirname, join
-from pylib.patching.patchit_apply import PatchitApply
-#from pylib.patching.patch import fromfile as patch_fromfile
+from pylib.patching.patchit_file import PatchitFile
 
 # Wrapper class for patching sources
 class PatchGen(object):
@@ -52,7 +50,7 @@ class PatchGen(object):
         # Apply patch
         self.log.info("Applying patch libsoxv1.patch")
         soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
-        patch1 = PatchitApply(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
+        patch1 = PatchitFile(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
         patch1.Apply()
 
         

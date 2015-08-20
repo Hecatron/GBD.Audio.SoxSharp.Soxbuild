@@ -1,30 +1,31 @@
 ﻿"""
-Wrapper for patchit for applying patches to multiple files
+Helper class for patching files
 """
 
 # This module uses patchit from https://pypi.python.org/pypi/patchit/1.1
 
 import os
 from pylib.patching.patchit import PatchSet
+from os.path import join, abspath
 
-# Wrapper class for patching sources
-class PatchitApply(object):
+class PatchitFile(object):
+    """Helper class for patching files"""
 
-    # Class Constructor
     def __init__(self, patchfile, startdir, strip = 0):
         self.patchfile = patchfile
         self.startdir = startdir
         self.strip = strip
 
-    # Apply a Patch file to the given directory
     def Apply(self):
+        """Apply a patch file to a directory"""
+
         with open(self.patchfile) as patch_hand:
             patches = PatchSet.from_stream(patch_hand)
 
             for patchitem in patches:
                 # Figure out the path of the file to patch
-                srcpath = PatchitApply.StripPath(patchitem.source_filename, self.strip)
-                srcpath = os.path.abspath(os.path.join(self.startdir, srcpath))
+                srcpath = PatchitFile.StripPath(patchitem.source_filename, self.strip)
+                srcpath = abspath(join(self.startdir, srcpath))
                 
                 with open(srcpath) as srcfile_hand:
                     # Get a read handle to the file to patch
@@ -32,20 +33,18 @@ class PatchitApply(object):
                     # Read in the file and patch in memory
                     outlist = list(patchitem.merge(srcfile_iter))
 
-                    # Overwrite file
+                    # Overwrite the output file
                     with open(srcpath, 'w') as file:
                         for item in outlist:
                             file.write("{}\n".format(item))
-
-                    # TODO test with multiple files / multiple patches
-                    # And check the carriage return outputed
         return
 
-    # Strip parts from the front of a relative path
     @staticmethod
     def StripPath(filepath, strip = 0):
+        """Strip parts from the front of a relative path, the same as -pX with gnu patch"""
+
         pathparts = filepath.split(os.sep)
         for x in range(0, strip):
             pathparts.pop(0)
-        retpath = os.path.join(*pathparts)
+        retpath = join(*pathparts)
         return retpath
