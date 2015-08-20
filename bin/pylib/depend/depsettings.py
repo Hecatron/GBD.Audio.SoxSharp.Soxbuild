@@ -80,19 +80,20 @@ class DependSettings(object):
                 self.log.warn("Deps Subdir: " + source.destsubdir + " already exists, skipping")
                 continue
 
-            extracted = False
+            source.Extracted = False
             downloaded = source.download()
             if downloaded == False:
                 self.log.error("Download Failed")
             else:
-                extracted = source.extract()
+                source.Extracted = source.extract()
 
             # Remove the archive file
             source.remove_archivefile()
 
         # Re-jig the directories for those that need it
         for source in self.sources:
-            source.movetoparent_multiple()
+            if source.Extracted == True:
+                source.movetoparent_multiple()
         return
 
     def get_configpath(self):

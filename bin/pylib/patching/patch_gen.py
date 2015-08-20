@@ -48,9 +48,9 @@ class PatchGen(object):
         sox_wrapperfile = abspath(join(self.Setts.DepsDirectory, "sox_swigcsharp", "swig_wrap.c"))
         shutil.copy(sox_wrapperfile, join(soxdir, "src"))
 
-        # Apply patch
-        soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
-        patch1 = PatchitApply(join(soxpatchdir, "swig.patch"), self.PatchedDir, 1)
-        patch1.Apply()
+        # Apply patch TODO
+        #soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
+        #patch1 = PatchitApply(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
+        #patch1.Apply()
 
         

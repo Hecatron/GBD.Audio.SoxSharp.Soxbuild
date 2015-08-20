@@ -21,6 +21,7 @@ class DepSource(object):
         self.arch_filepath = ""
         self.subdirmove = 0
         self.log = LogWrapper.getlogger()
+        self.Extracted = False
 
     def download(self):
         return True
