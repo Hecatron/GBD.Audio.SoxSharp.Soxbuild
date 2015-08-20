@@ -31,6 +31,11 @@ try:
     #MSBuildProcess.VsPlatform_Default = "x64"
     MSBuildProcess.VsPlatform_Default = "Win32"
 
+    # Build ZLib, required by LibPng
+    msbuildproc = MSBuildProcess(join(cmakebuild_dir, "zlib", "zlib.sln"))
+    msbuildproc.Start(tgt = "zlib:Clean")
+    msbuildproc.Start(tgt = "zlib:Rebuild")
+
     # Build libsox
     msbuildproc = MSBuildProcess(join(cmakebuild_dir, "sox", "sox.sln"))
     msbuildproc.Start(tgt = "gsm:Clean")

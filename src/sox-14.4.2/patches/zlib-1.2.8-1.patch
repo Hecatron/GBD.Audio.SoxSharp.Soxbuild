@@ -1,0 +1,18 @@
+diff -Naur packages\zlib/CMakeLists.txt patched\zlib/CMakeLists.txt
+--- packages\zlib/CMakeLists.txt	Sun Apr 28 23:57:10 2013
++++ patched\zlib/CMakeLists.txt	Thu Aug 20 16:18:54 2015
+@@ -188,6 +188,14 @@
+ set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
+ set_target_properties(zlib PROPERTIES SOVERSION 1)
+ 
++# Set the Output Directory for libs
++set_target_properties(zlib zlibstatic
++    PROPERTIES
++    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++)
++
+ if(NOT CYGWIN)
+     # This property causes shared libraries on Linux to have the full version
+     # encoded into their final filename.  We disable this on Cygwin because

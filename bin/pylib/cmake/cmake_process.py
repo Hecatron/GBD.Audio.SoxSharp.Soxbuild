@@ -12,6 +12,7 @@ class CMakeProcess(Process):
     def __init__(self):
         super().__init__()
         self.log = LogWrapper.getlogger()
+        self.ExePath = "cmake.exe"
 
         # CMake Process options
         self.Generator = None

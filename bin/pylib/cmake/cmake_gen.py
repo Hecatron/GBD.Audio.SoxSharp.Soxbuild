@@ -40,18 +40,28 @@ class CMakeGen(object):
     # Start the CMake Generation
     def Start(self):
         if self.Setts.CMakeGenerator == None: self.Setts.CMakeGenerator = self.getgenerator()
+        self.CMake_Zlib()
+        self.CMake_LibSox()
 
+    def CMake_Zlib(self):
+        # Run cmake for zlib, this is needed for libpng
+        cmakeproc = CMakeProcess()
+        cmakeproc.WorkingDir = join(self.Setts.DepsDirectory, "cmake", "zlib")
+        cmakeproc.SrcDir = join(self.Setts.DepsDirectory, "patched", "zlib")
+        cmakeproc.Generator = self.Setts.CMakeGenerator
+        cmakeproc.SetupOutputDir()
+        cmakeproc.Start()
+
+    def CMake_LibSox(self):
         # Run cmake for libsox
         cmakeproc = CMakeProcess()
-        cmakeproc.ExePath = "cmake.exe"
         cmakeproc.WorkingDir = join(self.Setts.DepsDirectory, "cmake", "sox")
         cmakeproc.SrcDir = join(self.Setts.DepsDirectory, "patched", "sox")
         cmakeproc.Generator = self.Setts.CMakeGenerator
         cmakeproc.SetupOutputDir()
 
         # Copy over needed files for cmake
-        sox_cmakefile = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "cmake", "soxconfig.h.cmake")
+        sox_cmakefile = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "cmake", "libsox", "soxconfig.h.cmake")
         shutil.copy(sox_cmakefile, cmakeproc.WorkingDir)
 
-        # Start cmake generation
         cmakeproc.Start()

@@ -24,6 +24,7 @@ class PatchGen(object):
     # Start the source patching
     def Start(self):
         self.log.info("Starting to patch sources")
+        self.PatchZlib()
         self.PatchLibSox()
         return
 
@@ -37,6 +38,16 @@ class PatchGen(object):
         shutil.copytree(srcdir, destdir)
         return destdir
 
+    def PatchZlib(self):
+        # Copy zlib to the patched directory
+        zlibdir = self.copysrctopatched("zlib")
+
+        # Apply patch
+        self.log.info("Applying patch zlib-1.2.8-1.patch")
+        soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
+        patch1 = PatchitFile(join(soxpatchdir, "zlib-1.2.8-1.patch"), self.PatchedDir, 1)
+        patch1.Apply()
+
     # Patch LibSox
     def PatchLibSox(self):
         # Copy sox to the patched directory
@@ -48,9 +59,7 @@ class PatchGen(object):
         shutil.copy(sox_wrapperfile, join(soxdir, "src"))
 
         # Apply patch
-        self.log.info("Applying patch libsoxv1.patch")
+        self.log.info("Applying patch libsox-14.4.2-1.patch")
         soxpatchdir = join(self.SrcDir, "sox-" + self.Setts.SoxVersion, "patches")
-        patch1 = PatchitFile(join(soxpatchdir, "libsoxv1.patch"), self.PatchedDir, 1)
+        patch1 = PatchitFile(join(soxpatchdir, "libsox-14.4.2-1.patch"), self.PatchedDir, 1)
         patch1.Apply()
-
-        
