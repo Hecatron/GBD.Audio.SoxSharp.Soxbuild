@@ -1,0 +1,27 @@
+diff -Naur packages\libpng/CMakeLists.txt patched\libpng/CMakeLists.txt
+--- packages\libpng/CMakeLists.txt	Thu Jul 23 04:36:41 2015
++++ patched\libpng/CMakeLists.txt	Fri Aug 21 14:56:16 2015
+@@ -21,6 +21,9 @@
+ set(PNGLIB_VERSION ${PNGLIB_MAJOR}.${PNGLIB_MINOR}.${PNGLIB_RELEASE})
+ 
+ # needed packages
++set(ZLIB_ROOT "${CMAKE_BINARY_DIR}/../LibOutput/Release" "${CMAKE_CURRENT_SOURCE_DIR}/../zlib")
++include_directories("${CMAKE_BINARY_DIR}/../zlib")
++
+ find_package(ZLIB REQUIRED)
+ include_directories(${ZLIB_INCLUDE_DIR})
+ 
+@@ -135,6 +138,13 @@
+   endif()
+   target_link_libraries(${PNG_LIB_NAME_STATIC} ${ZLIB_LIBRARY} ${M_LIBRARY})
+ endif()
++
++set_target_properties( ${PNG_LIB_NAME} ${PNG_LIB_NAME}_static
++  PROPERTIES
++  ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++  LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../LibOutput"
++)
+ 
+ if(PNG_FRAMEWORK)
+   set(PNG_LIB_NAME_FRAMEWORK ${PNG_LIB_NAME}_framework)

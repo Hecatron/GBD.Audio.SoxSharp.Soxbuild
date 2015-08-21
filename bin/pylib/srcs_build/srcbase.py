@@ -17,7 +17,6 @@ class SrcBase(object):
         self.Setts = Setts
         self.CmakeBuild_Dir = join(Setts.DepsDirectory, "cmake")
         self.Src_Dir = abspath(join(self.Setts.DepsDirectory, "..", "src"))
-        self.Patches_Dir = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "patches")
         self.Packages_Dir = abspath(join(self.Setts.DepsDirectory, "packages"))
         self.Patched_Dir = abspath(join(self.Setts.DepsDirectory, "patched"))
 

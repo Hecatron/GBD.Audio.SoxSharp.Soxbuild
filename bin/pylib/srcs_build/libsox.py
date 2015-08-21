@@ -16,6 +16,7 @@ class Libsox(SrcBase):
     # Class Constructor
     def __init__(self, Setts):
         super().__init__(Setts)
+        self.Patches_Dir = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "patches")
         self.log = LogWrapper.getlogger()
 
     def Patch_Srcs(self):
@@ -42,10 +43,9 @@ class Libsox(SrcBase):
         cmakeproc.SetupOutputDir()
 
         # Copy over needed files for cmake
-        sox_cmakefile = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "cmake", "libsox", "soxconfig.h.cmake")
-        shutil.copy(sox_cmakefile, cmakeproc.WorkingDir)
+        sox_cmakefile = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "cmake", "soxconfig.h.cmake")
+        shutil.copy(sox_cmakefile, join(self.CmakeBuild_Dir, "sox"))
 
-        # Start cmake
         cmakeproc.Start()
 
     def MSBuild_Build(self):

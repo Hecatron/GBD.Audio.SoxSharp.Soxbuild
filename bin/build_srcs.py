@@ -37,7 +37,7 @@ try:
 
     # Next lets build some sources
     Builders = []
-    Builders.append(ZLib(Setts))
+    #Builders.append(ZLib(Setts))
     #Builders.append(LibPng(Setts))
     Builders.append(Libsox(Setts))
 

@@ -16,6 +16,7 @@ class ZLib(SrcBase):
     # Class Constructor
     def __init__(self, Setts):
         super().__init__(Setts)
+        self.Patches_Dir = join(self.Src_Dir, "zlib-1.2.8", "patches")
         self.log = LogWrapper.getlogger()
 
     def Patch_Srcs(self):
