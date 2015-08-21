@@ -65,6 +65,9 @@
     <Compile Include="..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
     </Compile>
+    <Compile Include="..\..\pylib\srcs_build\lame.py">
+      <Link>pylib\srcs_build\lame.py</Link>
+    </Compile>
     <Compile Include="..\..\pylib\srcs_build\libpng.py">
       <Link>pylib\srcs_build\libpng.py</Link>
     </Compile>

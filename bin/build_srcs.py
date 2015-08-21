@@ -11,6 +11,7 @@ from pylib.subproc.msbuild_process import MSBuildProcess
 
 from pylib.srcs_build.zlib import ZLib
 from pylib.srcs_build.libpng import LibPng
+from pylib.srcs_build.lame import Lame
 from pylib.srcs_build.libsox import Libsox
 
 try:
@@ -30,8 +31,11 @@ try:
 
     # Set some default values / shared class properties
     MSBuildProcess.MSBuildExe = join("C:\\", "Program Files (x86)", "MSBuild", "12.0", "Bin", "msbuild.exe")
+
     #MSBuildProcess.VsConfig_Default = "Debug"
     MSBuildProcess.VsConfig_Default = "Release"
+
+    #Setts.CMakeGenerator = "Visual Studio 12 2013 Win64"
     #MSBuildProcess.VsPlatform_Default = "x64"
     MSBuildProcess.VsPlatform_Default = "Win32"
 
@@ -39,12 +43,17 @@ try:
     Builders = []
     #Builders.append(ZLib(Setts))
     #Builders.append(LibPng(Setts))
-    Builders.append(Libsox(Setts))
+    Builders.append(Lame(Setts))
+    #Builders.append(Libsox(Setts))
 
     for builditem in Builders:
         builditem.Patch_Srcs()
         builditem.Generate_CMake()
         builditem.MSBuild_Build()
+
+    # TODO As a final step we need to copy out
+    # libsox.dll -> libsox-<arch>.dll
+    # LibMp3Lame.dll
 
 # Output any errors
 except Exception as e:
