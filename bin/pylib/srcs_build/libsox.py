@@ -2,7 +2,7 @@
 LIbsox Handler class
 """
 
-import shutil
+import shutil, os
 from pylib.logwrapper import LogWrapper
 from pylib.srcs_build.srcbase import SrcBase
 from pylib.patching.patchit_file import PatchitFile
@@ -17,6 +17,7 @@ class Libsox(SrcBase):
     def __init__(self, Setts):
         super().__init__(Setts)
         self.Patches_Dir = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "patches")
+        self.ModifiedSrc_Dir = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "modifiedsrc")
         self.log = LogWrapper.getlogger()
 
     def Patch_Srcs(self):
@@ -28,10 +29,14 @@ class Libsox(SrcBase):
         sox_wrapperfile = abspath(join(self.Setts.DepsDirectory, "sox_swigcsharp", "swig_wrap.c"))
         shutil.copy(sox_wrapperfile, join(srcdir, "src"))
 
-        # Apply patch
-        self.log.info("Applying patch libsox-14.4.2-1.patch")
-        patch1 = PatchitFile(join(self.Patches_Dir, "libsox-14.4.2-1.patch"), self.Patched_Dir, 1)
-        patch1.Apply()
+        # Copy over the file that determines which libs libsox will look for
+        sox_cmakefile = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "cmake", "soxconfig.h.cmake")
+        shutil.copy(sox_cmakefile, join(srcdir, "src"))
+
+        # Copy over modified CmakeLists.txt files
+        shutil.copy(join(self.ModifiedSrc_Dir, "libgsm", "CMakeLists.txt"), join(srcdir, "libgsm"))
+        shutil.copy(join(self.ModifiedSrc_Dir, "lpc10", "CMakeLists.txt"), join(srcdir, "lpc10"))
+        shutil.copy(join(self.ModifiedSrc_Dir, "src", "CMakeLists.txt"), join(srcdir, "src"))
 
     def Generate_CMake(self):
         # Generate the CMake files
@@ -41,11 +46,6 @@ class Libsox(SrcBase):
         cmakeproc.SrcDir = join(self.Patched_Dir, "sox")
         cmakeproc.Generator = self.Setts.CMakeGenerator
         cmakeproc.SetupOutputDir()
-
-        # Copy over needed files for cmake
-        sox_cmakefile = join(self.Src_Dir, "sox-" + self.Setts.SoxVersion, "cmake", "soxconfig.h.cmake")
-        shutil.copy(sox_cmakefile, join(self.CmakeBuild_Dir, "sox"))
-
         cmakeproc.Start()
 
     def MSBuild_Build(self):

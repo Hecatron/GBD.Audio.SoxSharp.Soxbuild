@@ -30,7 +30,7 @@
 #cmakedefine HAVE_MP3                 1
 #cmakedefine HAVE_OGG_VORBIS          1
 #cmakedefine HAVE_OSS                 1
-cmakedefine HAVE_PNG                 1
+#define HAVE_PNG                 1
 #cmakedefine HAVE_POPEN               1
 #cmakedefine HAVE_PULSEAUDIO          1
 #cmakedefine HAVE_SNDFILE             1
