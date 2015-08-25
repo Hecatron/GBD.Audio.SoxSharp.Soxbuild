@@ -52,8 +52,10 @@ try:
         builditem.MSBuild_Build()
 
     # TODO As a final step we need to copy out
-    # libsox.dll -> libsox-<arch>.dll
+    # libsox.dll
     # LibMp3Lame.dll
+    # LibMad.dll
+    # LibSndFile-1.dll
 
 # Output any errors
 except Exception as e:

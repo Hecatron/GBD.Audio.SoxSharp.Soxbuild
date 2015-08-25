@@ -2,63 +2,32 @@
 
 ## Overview
 
-This is a list of build tools and libraries contained within this bin/binfiles directory
+This is a list of build tools required to build the sources
 
 ## Build Tools
 
-### ScriptCs
+### Python 3.x
 
-http://scriptcs.net/
+The build scripts are primarily written in Python 3.x
 
-**Scriptcs** is used for running all build related scripts (in C#).
-Actual scripts in C# are stored within the bin/scripts directory
-
-At the moment I couldn't get .csx files to be recognised fully within Visual Studio as code files.
-So code such as Main_Depend.csx acts as a jumping off point to a .cs file where the actual code sits.
-The bin/scripts/Testing directory contains Visual Studio Solution / Projects for testing and developing the build scripts
-
-### NuGet
-
-* https://www.nuget.org/
-
-We use the **Nuget.exe** for the auto downloading of dependencies for .Net Projects contained within this Project.
-This allows us to more easily download .Net depends of specific versions.
-The packages.config file witihn the scripts directory is used for a general list of which .Net depends to download
-into the /deps/ directory
-
-Use the following command to update itself
-
-  nuget update -self
+ * https://www.python.org/
 
 ### CMake
 
-* http://www.cmake.org/
-
 CMake is used for the generation of Project Files for different platforms for libsox
+
+ * http://www.cmake.org/
+
+### Visual Studio 2013 / MSBuild
+
+Currently the sources are set to build via MSBuild / Visual Studio 2013
+I've been debugging the python scripts using VS2015 / Python Tools (there's a solution within the bin/vsdebug directory)
+But VS2013 is needed to compile libsox
+
+## Auto Downloaded Tools
 
 ### Swig 3.0
 
-* http://www.swig.org/download.html
+As part of the download srcs script, swig 3.0 is auto downloaded for generating C# Code from the C code within libsox
 
-Swig is used for the generation of code as part of the wrapper
-
-## .Net Libraries
-
-### NLog
-
-http://nlog-project.org/
-
-NLog is used for console output and general logging, it can be customised by editing the NLog.config <br />
-TODO Look into Common Logging
-
-### SharpZipLib
-
-http://icsharpcode.github.io/SharpZipLib/
-
-SharpZipLib is used for the unpacking of non .Net dependencies / extraction of compressed files
-
-### SevenZipSharp
-
-SevenZipSharp is used for handling 7zip files and xz files such as flac.tar.xz
-
-TODO Check this is cross platform compatible
+ * http://www.swig.org/download.html

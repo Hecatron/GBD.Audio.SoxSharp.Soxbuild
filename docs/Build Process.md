@@ -52,8 +52,8 @@ internal changes to the iobuf / FILE structures that libsox relies on
 
  * http://stackoverflow.com/questions/31150635/build-error-in-visual-studio-in-perlio-h-and-iobuf
 
-### TODO Files
+### TODO
 
-  * This only generates project files for libsox so far, we need to look at other projects next
-  * Linux support
-  * configure soxconfig.h.cmake in the sox cmake directory and set it to use external libs
+  * Tweak settings for libsox / other libs
+  * Make CMakeLists.txt for each dependent library, and roll in via soxconfig.h.cmake
+  * Linux Support

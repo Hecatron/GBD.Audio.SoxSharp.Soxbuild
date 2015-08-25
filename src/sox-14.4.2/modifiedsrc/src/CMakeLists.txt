@@ -2,6 +2,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}config.h.cmake ${CMAKE
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+# ZLib and Libpng Support
 include_directories( "${CMAKE_CURRENT_BINARY_DIR}/../../libpng")
 include_directories( "${CMAKE_CURRENT_BINARY_DIR}/../../zlib")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/../../libpng")
@@ -160,6 +161,8 @@ add_library(lib${PROJECT_NAME} SHARED
 
 # Add the depend libs into the linker
 target_link_libraries(lib${PROJECT_NAME} gsm.lib lpc10.lib)
+
+# ZLib and Libpng Support
 target_link_libraries(lib${PROJECT_NAME} libpng16.lib zlib.lib)
 
 # Set the Output Directory for libs
